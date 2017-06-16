@@ -1,0 +1,885 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Mac, iOS助手开发," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Martin's TechNet Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Hi， 太久没有写文章了，准备勤快的更新了。文章以后将开始用简体中文开始写了， 可能有词还是繁体直译，看不懂莫怪，哈哈（跑题了） 言归正传
+
+
+前言如果你厌恶iTunes带来的繁琐，却想要通过macOS来连接你的iPhone， 并和iTunes一样管理你的手机，甚至简化一些步骤，你可能需要看看这篇文章了。想要和iTunes一样连接管理iPhone装置，我们需要了解到他的private api，这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS助手开发1-基础">
+<meta property="og:url" content="http://blog.martinlau.org/2017/03/iOS助手开发1-基础/index.html">
+<meta property="og:site_name" content="Martin's TechNet Blog">
+<meta property="og:description" content="Hi， 太久没有写文章了，准备勤快的更新了。文章以后将开始用简体中文开始写了， 可能有词还是繁体直译，看不懂莫怪，哈哈（跑题了） 言归正传
+
+
+前言如果你厌恶iTunes带来的繁琐，却想要通过macOS来连接你的iPhone， 并和iTunes一样管理你的手机，甚至简化一些步骤，你可能需要看看这篇文章了。想要和iTunes一样连接管理iPhone装置，我们需要了解到他的private api，这">
+<meta property="og:updated_time" content="2017-03-18T18:07:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS助手开发1-基础">
+<meta name="twitter:description" content="Hi， 太久没有写文章了，准备勤快的更新了。文章以后将开始用简体中文开始写了， 可能有词还是繁体直译，看不懂莫怪，哈哈（跑题了） 言归正传
+
+
+前言如果你厌恶iTunes带来的繁琐，却想要通过macOS来连接你的iPhone， 并和iTunes一样管理你的手机，甚至简化一些步骤，你可能需要看看这篇文章了。想要和iTunes一样连接管理iPhone装置，我们需要了解到他的private api，这">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主大大'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.martinlau.org/2017/03/iOS助手开发1-基础/"/>
+
+
+
+
+
+  <title>iOS助手开发1-基础 | Martin's TechNet Blog</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Martin's TechNet Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">用程式碼記錄成長</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.martinlau.org/2017/03/iOS助手开发1-基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MartinLau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Martin's TechNet Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">iOS助手开发1-基础</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-03-19T01:56:54+08:00">
+                2017-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mac-开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Mac 开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><strong>Hi， 太久没有写文章了，准备勤快的更新了。文章以后将开始用简体中文开始写了， 可能有词还是繁体直译，看不懂莫怪，哈哈（跑题了） 言归正传</strong></p>
+</blockquote>
+<hr>
+<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h4><p>如果你厌恶iTunes带来的繁琐，却想要通过macOS来连接你的iPhone， 并和iTunes一样管理你的手机，甚至简化一些步骤，你可能需要看看这篇文章了。想要和iTunes一样连接管理iPhone装置，我们需要了解到他的private api，这可能需要你懂得反组译，我这里并不准备说明怎么反组译，你可能需要自行google it。<br><strong>so sad : (</strong><br><a id="more"></a></p>
+<p>那么我们应该从哪里找到这个private api呢？iTunes其实也是调用了<strong>/System/Library/PrivateFrameworks/MobileDevice.framework</strong>这个库，里面包含了对iOS装置连接和通讯的函式，你可以自行研究一下反组译。<br>当然你如果太懒，就用我整理好的吧，基本我整理差不多了。<br>由于macOS基本是64bit开发了，所以我以后将以64bit做基础开发和讲解。</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><blockquote>
+<h5 id="依赖库"><a href="#依赖库" class="headerlink" title="依赖库"></a><strong>依赖库</strong></h5><ul>
+<li>/System/Library/PrivateFrameworks/MobileDevice.framework</li>
+<li>CoreFoundation.framework</li>
+</ul>
+<h5 id="开发语言"><a href="#开发语言" class="headerlink" title="开发语言"></a><strong>开发语言</strong></h5><ul>
+<li>objective-c</li>
+<li>c</li>
+</ul>
+<p><strong>以下是我反向和整理的 api-headers :</strong></p>
+<h5 id="api-headers-Code"><a href="#api-headers-Code" class="headerlink" title="api-headers Code"></a><strong>api-headers Code</strong></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div><div class="line">328</div><div class="line">329</div><div class="line">330</div><div class="line">331</div><div class="line">332</div><div class="line">333</div><div class="line">334</div><div class="line">335</div><div class="line">336</div><div class="line">337</div><div class="line">338</div><div class="line">339</div><div class="line">340</div><div class="line">341</div><div class="line">342</div><div class="line">343</div><div class="line">344</div><div class="line">345</div><div class="line">346</div><div class="line">347</div><div class="line">348</div><div class="line">349</div><div class="line">350</div><div class="line">351</div><div class="line">352</div><div class="line">353</div><div class="line">354</div><div class="line">355</div><div class="line">356</div><div class="line">357</div><div class="line">358</div><div class="line">359</div><div class="line">360</div><div class="line">361</div><div class="line">362</div><div class="line">363</div><div class="line">364</div><div class="line">365</div><div class="line">366</div><div class="line">367</div><div class="line">368</div><div class="line">369</div><div class="line">370</div><div class="line">371</div><div class="line">372</div><div class="line">373</div><div class="line">374</div><div class="line">375</div><div class="line">376</div><div class="line">377</div><div class="line">378</div><div class="line">379</div><div class="line">380</div><div class="line">381</div><div class="line">382</div><div class="line">383</div><div class="line">384</div><div class="line">385</div><div class="line">386</div><div class="line">387</div><div class="line">388</div><div class="line">389</div><div class="line">390</div><div class="line">391</div><div class="line">392</div><div class="line">393</div><div class="line">394</div><div class="line">395</div><div class="line">396</div><div class="line">397</div><div class="line">398</div><div class="line">399</div><div class="line">400</div><div class="line">401</div><div class="line">402</div><div class="line">403</div><div class="line">404</div><div class="line">405</div><div class="line">406</div><div class="line">407</div><div class="line">408</div><div class="line">409</div><div class="line">410</div><div class="line">411</div><div class="line">412</div><div class="line">413</div><div class="line">414</div><div class="line">415</div><div class="line">416</div><div class="line">417</div><div class="line">418</div><div class="line">419</div><div class="line">420</div><div class="line">421</div><div class="line">422</div><div class="line">423</div><div class="line">424</div><div class="line">425</div><div class="line">426</div><div class="line">427</div><div class="line">428</div><div class="line">429</div><div class="line">430</div><div class="line">431</div><div class="line">432</div><div class="line">433</div><div class="line">434</div><div class="line">435</div><div class="line">436</div><div class="line">437</div><div class="line">438</div><div class="line">439</div><div class="line">440</div><div class="line">441</div><div class="line">442</div><div class="line">443</div><div class="line">444</div><div class="line">445</div><div class="line">446</div><div class="line">447</div><div class="line">448</div><div class="line">449</div><div class="line">450</div><div class="line">451</div><div class="line">452</div><div class="line">453</div><div class="line">454</div><div class="line">455</div><div class="line">456</div><div class="line">457</div><div class="line">458</div><div class="line">459</div><div class="line">460</div><div class="line">461</div><div class="line">462</div><div class="line">463</div><div class="line">464</div><div class="line">465</div><div class="line">466</div><div class="line">467</div><div class="line">468</div><div class="line">469</div><div class="line">470</div><div class="line">471</div><div class="line">472</div><div class="line">473</div><div class="line">474</div><div class="line">475</div><div class="line">476</div><div class="line">477</div><div class="line">478</div><div class="line">479</div><div class="line">480</div><div class="line">481</div><div class="line">482</div><div class="line">483</div><div class="line">484</div><div class="line">485</div><div class="line">486</div><div class="line">487</div><div class="line">488</div><div class="line">489</div><div class="line">490</div><div class="line">491</div><div class="line">492</div><div class="line">493</div><div class="line">494</div><div class="line">495</div><div class="line">496</div><div class="line">497</div><div class="line">498</div><div class="line">499</div><div class="line">500</div><div class="line">501</div><div class="line">502</div><div class="line">503</div><div class="line">504</div><div class="line">505</div><div class="line">506</div><div class="line">507</div><div class="line">508</div><div class="line">509</div><div class="line">510</div><div class="line">511</div><div class="line">512</div><div class="line">513</div><div class="line">514</div><div class="line">515</div><div class="line">516</div><div class="line">517</div><div class="line">518</div><div class="line">519</div><div class="line">520</div><div class="line">521</div><div class="line">522</div><div class="line">523</div><div class="line">524</div><div class="line">525</div><div class="line">526</div><div class="line">527</div><div class="line">528</div><div class="line">529</div><div class="line">530</div><div class="line">531</div><div class="line">532</div><div class="line">533</div><div class="line">534</div><div class="line">535</div><div class="line">536</div><div class="line">537</div><div class="line">538</div><div class="line">539</div><div class="line">540</div><div class="line">541</div><div class="line">542</div><div class="line">543</div><div class="line">544</div><div class="line">545</div><div class="line">546</div><div class="line">547</div><div class="line">548</div><div class="line">549</div><div class="line">550</div><div class="line">551</div><div class="line">552</div><div class="line">553</div><div class="line">554</div><div class="line">555</div><div class="line">556</div><div class="line">557</div><div class="line">558</div><div class="line">559</div><div class="line">560</div><div class="line">561</div><div class="line">562</div><div class="line">563</div><div class="line">564</div><div class="line">565</div><div class="line">566</div><div class="line">567</div><div class="line">568</div><div class="line">569</div><div class="line">570</div><div class="line">571</div><div class="line">572</div><div class="line">573</div><div class="line">574</div><div class="line">575</div><div class="line">576</div><div class="line">577</div><div class="line">578</div><div class="line">579</div><div class="line">580</div><div class="line">581</div><div class="line">582</div><div class="line">583</div><div class="line">584</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></div><div class="line"><span class="keyword">extern</span> <span class="string">"C"</span> &#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">    </div><div class="line">    <span class="comment">/*</span></div><div class="line">     * its critical that we spell out all integer sizes, for the entry points</div><div class="line">     * and data structures in the external DLL/framework that we have no</div><div class="line">     * control over.</div><div class="line">     */</div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdint.h&gt;</span></span></div><div class="line">    </div><div class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(WIN32)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;CoreFoundation.h&gt;</span></span></div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">uint32_t</span> kAMDError;</div><div class="line"><span class="meta">#<span class="meta-keyword">elif</span> defined(__APPLE__)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;CoreFoundation/CoreFoundation.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;mach/error.h&gt;</span></span></div><div class="line">    </div><div class="line"><span class="meta">#import <span class="meta-string">"MSMobileDeviceMacro.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="comment">/* Error codes */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MDERR_APPLE_MOBILE		(err_system(0x3a))</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MDERR_IPHONE			(err_sub(0))</span></div><div class="line">    </div><div class="line">    <span class="comment">/* Apple Mobile (AM*) errors */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MDERR_OK                ERR_SUCCESS</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MDERR_SYSCALL           (ERR_MOBILE_DEVICE | 0x01)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MDERR_OUT_OF_MEMORY     (ERR_MOBILE_DEVICE | 0x03)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MDERR_QUERY_FAILED      (ERR_MOBILE_DEVICE | 0x04)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MDERR_INVALID_ARGUMENT  (ERR_MOBILE_DEVICE | 0x0b)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MDERR_NO_SUCH_SERVICE   (ERR_MOBILE_DEVICE | 0x22)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MDERR_DICT_NOT_LOADED   (ERR_MOBILE_DEVICE | 0x25)</span></div><div class="line">    </div><div class="line">    <span class="comment">/* Apple File Connection (AFC*) errors */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MDERR_AFC_OUT_OF_MEMORY 0x03</span></div><div class="line">    </div><div class="line">    <span class="comment">/* Services, found in /System/Library/Lockdown/Services.plist */</span></div><div class="line">    <span class="comment">//com.apple.springboardservices</span></div><div class="line">    <span class="comment">//com.apple.mobile.installation_proxy</span></div><div class="line">    <span class="comment">//com.apple.mobile.house_arrest</span></div><div class="line">    <span class="comment">//com.apple.crashreportcopymover</span></div><div class="line">    <span class="comment">//com.apple.crashreportcopymobile</span></div><div class="line">    <span class="comment">//com.apple.misagent</span></div><div class="line">    <span class="comment">//com.apple.debug_image_mount</span></div><div class="line">    <span class="comment">//com.apple.mobile.integrity_relay</span></div><div class="line">    <span class="comment">//com.apple.mobile.MCInstall</span></div><div class="line">    <span class="comment">//com.apple.mobile.mobile_image_mounter</span></div><div class="line">    <span class="comment">//com.apple.mobile.diagnostics_relay</span></div><div class="line">    <span class="comment">//com.apple.mobile.factory_proxy</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> AMSVC_ATC                   <span class="meta-string">"com.apple.atc"</span>                                     <span class="comment">//同步服务</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> AMSVC_AFC                   <span class="meta-string">"com.apple.afc"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> AMSVC_AFC2                  <span class="meta-string">"com.apple.afc2"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> AMSVC_BACKUP                <span class="meta-string">"com.apple.mobilebackup"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> AMSVC_CRASH_REPORT_COPY     <span class="meta-string">"com.apple.crashreportcopy"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> AMSVC_DEBUG_IMAGE_MOUNT     <span class="meta-string">"com.apple.mobile.debug_image_mount"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> AMSVC_NOTIFICATION_PROXY    <span class="meta-string">"com.apple.mobile.notification_proxy"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> AMSVC_PURPLE_TEST           <span class="meta-string">"com.apple.purpletestr"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> AMSVC_SOFTWARE_UPDATE       <span class="meta-string">"com.apple.mobile.software_update"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> AMSVC_SYNC                  <span class="meta-string">"com.apple.mobilesync"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> AMSVC_SCREENSHOT            <span class="meta-string">"com.apple.screenshotr"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> AMSVC_SYSLOG_RELAY          <span class="meta-string">"com.apple.syslog_relay"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> AMSVC_SYSTEM_PROFILER       <span class="meta-string">"com.apple.mobile.system_profiler"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> AMSVC_SCREENSHOTR           <span class="meta-string">"com.apple.mobile.screenshotr"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> AMSVC_FILE_RELAY            <span class="meta-string">"com.apple.mobile.file_relay"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> AMSVC_HOUSE_ARREST          <span class="meta-string">"com.apple.mobile.house_arrest"</span>                     <span class="comment">//应用内文件服务</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> AMSVC_SPRINGBOARD_SERVICE   <span class="meta-string">"com.apple.springboardservices"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> AMSVC_INSTALLATION_PROXY    <span class="meta-string">"com.apple.mobile.installation_proxy"</span></span></div><div class="line">    </div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="comment">// Apple's opaque types</span></div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">uint32_t</span> <span class="keyword">afc_error_t</span>;</div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">uint64_t</span> afc_file_ref;</div><div class="line">    </div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">int</span> am_service;</div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">int</span> am_connection;</div><div class="line">    </div><div class="line">    <span class="comment">/* opaque structures */</span></div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">struct</span> _am_device				*am_device;</div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">struct</span> _am_restore_device		*am_restore_device;</div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">struct</span> _am_recovery_device		*am_recovery_device;</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">struct</span> _afc_connection			*afc_connection;</div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">struct</span> _am_device_notification	*am_device_notification;</div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">struct</span> _afc_directory			*afc_directory;</div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">struct</span> _afc_dictionary			*afc_dictionary;</div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">struct</span> _afc_operation			*afc_operation;</div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">void</span> *                          ath_connection;</div><div class="line">    </div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">struct</span> ssl_st                   *SSL;</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">union</span> _kAMDUnionRef</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">long</span> aaaa;</div><div class="line">        <span class="keyword">char</span> bbb[<span class="number">8</span>];</div><div class="line">    &#125; kAMDUnionRef;</div><div class="line">    </div><div class="line">    <span class="comment">/* Messages passed to device notification callbacks: passed as part of</span></div><div class="line">     * am_device_notification_callback_info. */</div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">enum</span> &#123;</div><div class="line">        ADNCI_MSG_CONNECTED     = <span class="number">1</span>,</div><div class="line">        ADNCI_MSG_DISCONNECTED  = <span class="number">2</span>,</div><div class="line">        ADNCI_MSG_UNSUBSCRIBED  = <span class="number">3</span></div><div class="line">    &#125; adnci_msg;</div><div class="line">    </div><div class="line">    <span class="keyword">struct</span> am_device_notification_callback_info &#123;</div><div class="line">        am_device	dev;				<span class="comment">/* 0    device */</span></div><div class="line">        <span class="keyword">uint32_t</span>	msg;				<span class="comment">/* 4    one of adnci_msg */</span></div><div class="line">    &#125; __attribute__ ((packed));</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="comment">/* The type of the device notification callback function. */</span></div><div class="line">    <span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*am_device_notification_callback)</span> <span class="params">(<span class="keyword">struct</span> am_device_notification_callback_info *, <span class="keyword">void</span>* callback_data)</span></span>;</div><div class="line">    </div><div class="line">    <span class="comment">/* The type of the device restore notification callback functions. */</span></div><div class="line">    <span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*am_restore_device_notification_callback)</span><span class="params">(am_recovery_device *)</span></span>;</div><div class="line">    </div><div class="line">    </div><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> mark - Device</span></div><div class="line">    </div><div class="line">    <span class="comment">/* ----------------------------------------------------------------------------</span></div><div class="line">     *   Public routines</div><div class="line">     * ------------------------------------------------------------------------- */</div><div class="line">    </div><div class="line">    <span class="comment">/* Registers a notification with the current run loop. The callback gets</span></div><div class="line">     * copied into the notification struct, as well as being registered with the</div><div class="line">     * current run loop. callback_data gets passed to the callback in addition</div><div class="line">     * to the info block.</div><div class="line">     * unused0 and unused1 are both 0 when iTunes calls this.</div><div class="line">     *</div><div class="line">     *  Returns:</div><div class="line">     *      MDERR_OK            if successful</div><div class="line">     *      MDERR_SYSCALL       if CFRunLoopAddSource() failed</div><div class="line">     *      MDERR_OUT_OF_MEMORY if we ran out of memory</div><div class="line">     */</div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceNotificationSubscribe</span><span class="params">(am_device_notification_callback callback,</span></span></div><div class="line">                                            <span class="keyword">uint32_t</span> unused0,</div><div class="line">                                            <span class="keyword">uint32_t</span> unused1,</div><div class="line">                                            <span class="keyword">void</span> *callback_data,</div><div class="line">                                            am_device_notification *notification);</div><div class="line">    </div><div class="line">    <span class="comment">/*</span></div><div class="line">     * Unregisters notifications. Buggy (iTunes 8.2): if you subscribe, unsubscribe and subscribe again, arriving</div><div class="line">     notifications will contain cookie and subscription from 1st call to subscribe, not the 2nd one. iTunes</div><div class="line">     calls this function only once on exit.</div><div class="line">     */</div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceNotificationUnsubscribe</span><span class="params">(am_device_notification subscription)</span></span>;</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="comment">/* Registers for device notifications related to the restore process. unknown0</span></div><div class="line">     * is zero when iTunes calls this. In iTunes,</div><div class="line">     * the callbacks are located at:</div><div class="line">     *      1: $3ac68e-$3ac6b1, calls $3ac542(unknown1, arg, 0)</div><div class="line">     *      2: $3ac66a-$3ac68d, calls $3ac542(unknown1, 0, arg)</div><div class="line">     *      3: $3ac762-$3ac785, calls $3ac6b2(unknown1, arg, 0)</div><div class="line">     *      4: $3ac73e-$3ac761, calls $3ac6b2(unknown1, 0, arg)</div><div class="line">     */</div><div class="line">    <span class="function">kAMDError <span class="title">AMRestoreRegisterForDeviceNotifications</span><span class="params">(am_restore_device_notification_callback dfu_connect_callback, am_restore_device_notification_callback recovery_connect_callback, am_restore_device_notification_callback dfu_disconnect_callback, am_restore_device_notification_callback recovery_disconnect_callback, <span class="keyword">unsigned</span> <span class="keyword">int</span> unknown0, <span class="keyword">void</span> *user_info)</span></span>;</div><div class="line">    </div><div class="line">    <span class="comment">/*  Connects to the iPhone. Pass in the am_device structure that the</span></div><div class="line">     *  notification callback will give to you.</div><div class="line">     *</div><div class="line">     *  Returns:</div><div class="line">     *      MDERR_OK                if successfully connected</div><div class="line">     *      MDERR_SYSCALL           if setsockopt() failed</div><div class="line">     *      MDERR_QUERY_FAILED      if the daemon query failed</div><div class="line">     *      MDERR_INVALID_ARGUMENT  if USBMuxConnectByPort returned 0xffffffff</div><div class="line">     */</div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceConnect</span><span class="params">(am_device device)</span></span>;</div><div class="line">    </div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceDisconnect</span><span class="params">(am_device device)</span></span>;</div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceRetain</span><span class="params">(am_device device)</span></span>;</div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceRelease</span><span class="params">(am_device device)</span></span>;</div><div class="line">    </div><div class="line">    <span class="comment">// __DLLIMPORT kAMDError AMDevicePair(struct am_device device);</span></div><div class="line">    <span class="function">kAMDError <span class="title">AMDevicePair</span><span class="params">(am_device device)</span></span>;</div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceUnpair</span><span class="params">(am_device device)</span></span>;</div><div class="line">    </div><div class="line">    <span class="comment">/*  Calls PairingRecordPath() on the given device, than tests whether the path</span></div><div class="line">     *  which that function returns exists. During the initial connect, the path</div><div class="line">     *  returned by that function is '/', and so this returns 1.</div><div class="line">     *</div><div class="line">     *  Returns:</div><div class="line">     *      0   if the path did not exist</div><div class="line">     *      1   if it did</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">AMDeviceIsPaired</span><span class="params">(am_device device)</span></span>;</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="comment">/*  iTunes calls this function immediately after testing whether the device is</span></div><div class="line">     *  paired. It creates a pairing file and establishes a Lockdown connection.</div><div class="line">     *</div><div class="line">     *  Returns:</div><div class="line">     *      MDERR_OK                if successful</div><div class="line">     *      MDERR_INVALID_ARGUMENT  if the supplied device is null</div><div class="line">     *      MDERR_DICT_NOT_LOADED   if the load_dict() call failed</div><div class="line">     */</div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceValidatePairing</span><span class="params">(am_device device)</span></span>;</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="comment">/*  Creates a Lockdown session and adjusts the device structure appropriately</span></div><div class="line">     *  to indicate that the session has been started. iTunes calls this function</div><div class="line">     *  after validating pairing.</div><div class="line">     *</div><div class="line">     *  Returns:</div><div class="line">     *      MDERR_OK                if successful</div><div class="line">     *      MDERR_INVALID_ARGUMENT  if the Lockdown conn has not been established</div><div class="line">     *      MDERR_DICT_NOT_LOADED   if the load_dict() call failed</div><div class="line">     */</div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceStartSession</span><span class="params">(am_device device)</span></span>;</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="comment">/* Starts a service and returns a handle that can be used in order to further</span></div><div class="line">     * access the service. You should stop the session and disconnect before using</div><div class="line">     * the service. iTunes calls this function after starting a session. It starts</div><div class="line">     * the service and the SSL connection. unknown may safely be</div><div class="line">     * NULL (it is when iTunes calls this), but if it is not, then it will be</div><div class="line">     * filled upon function exit. service_name should be one of the AMSVC_*</div><div class="line">     * constants. If the service is AFC (AMSVC_AFC), then the handle is the handle</div><div class="line">     * that will be used for further AFC* calls.</div><div class="line">     *</div><div class="line">     * Returns:</div><div class="line">     *      MDERR_OK                if successful</div><div class="line">     *      MDERR_SYSCALL           if the setsockopt() call failed</div><div class="line">     *      MDERR_INVALID_ARGUMENT  if the Lockdown conn has not been established</div><div class="line">     */</div><div class="line">    </div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceStartService</span><span class="params">(am_device device,</span></span></div><div class="line">                                   CFStringRef service_name,</div><div class="line">                                   am_service *handle,</div><div class="line">                                   <span class="keyword">uint32_t</span> *unknown);</div><div class="line">    </div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceSecureStartService</span><span class="params">(am_device device,</span></span></div><div class="line">                                         CFStringRef service_name,</div><div class="line">                                         am_service *handle,</div><div class="line">                                         am_connection *securitySocketCookie);</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">AMDServiceConnectionGetSocket</span><span class="params">(am_connection handle)</span></span>;</div><div class="line">    </div><div class="line">    <span class="comment">/* Start and Stops a session. You should do this before accessing services.</span></div><div class="line">     *</div><div class="line">     * Returns:</div><div class="line">     *      MDERR_OK                if successful</div><div class="line">     *      MDERR_INVALID_ARGUMENT  if the Lockdown conn has not been established</div><div class="line">     */</div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceStartSession</span><span class="params">(am_device device)</span></span>;</div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceStopSession</span><span class="params">(am_device device)</span></span>;</div><div class="line">    </div><div class="line">    <span class="keyword">uint32_t</span> AMDeviceGetConnectionID(am_device device);</div><div class="line">    <span class="keyword">uint32_t</span> AMDeviceEnterRecovery(am_device device);</div><div class="line">    </div><div class="line">    <span class="keyword">uint32_t</span> AMDeviceGetInterfaceType(am_device device);    <span class="comment">// &#123; return 1; //USB   return 2; //iTuens_WIFI &#125;</span></div><div class="line">    <span class="keyword">uint32_t</span> AMDeviceGetInterfaceSpeed(am_device device);   <span class="comment">// &#123; return 0x78000; &#125;           //废弃</span></div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="comment">/* Reads various device settings; returns nil if no value is found for</span></div><div class="line">     * the nominated key</div><div class="line">     *</div><div class="line">     * Must be balanced by CFRelease()</div><div class="line">     *</div><div class="line">     * Possible values for key:</div><div class="line">     * ActivationState</div><div class="line">     * ActivationStateAcknowledged</div><div class="line">     * BasebandBootloaderVersion</div><div class="line">     * BasebandVersion</div><div class="line">     * BluetoothAddress</div><div class="line">     * BuildVersion</div><div class="line">     * DeviceCertificate</div><div class="line">     * DeviceClass</div><div class="line">     * DeviceName</div><div class="line">     * DevicePublicKey</div><div class="line">     * FirmwareVersion</div><div class="line">     * HostAttached</div><div class="line">     * IntegratedCircuitCardIdentity</div><div class="line">     * InternationalMobileEquipmentIdentity</div><div class="line">     * InternationalMobileSubscriberIdentity</div><div class="line">     * ModelNumber</div><div class="line">     * PhoneNumber</div><div class="line">     * ProductType</div><div class="line">     * ProductVersion</div><div class="line">     * ProtocolVersion</div><div class="line">     * RegionInfo</div><div class="line">     * SBLockdownEverRegisteredKey</div><div class="line">     * SIMStatus</div><div class="line">     * SerialNumber</div><div class="line">     * SomebodySetTimeZone</div><div class="line">     * TimeIntervalSince1970</div><div class="line">     * TimeZone</div><div class="line">     * TimeZoneOffsetFromUTC</div><div class="line">     * TrustedHostAttached</div><div class="line">     * UniqueDeviceID</div><div class="line">     * Uses24HourClock</div><div class="line">     * WiFiAddress</div><div class="line">     * iTunesHasConnectedAMDeviceSetWirelessBuddyFlags</div><div class="line">     */</div><div class="line">    <span class="function">CFTypeRef <span class="title">AMDeviceCopyValue</span><span class="params">(am_device device, CFStringRef domain, CFStringRef key)</span></span>;</div><div class="line">    </div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceSetValue</span><span class="params">(am_device device, CFStringRef domain, CFStringRef key, CFTypeRef value)</span></span>;</div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceRemoveValue</span><span class="params">(am_device device, CFStringRef domain, CFStringRef key)</span></span>;</div><div class="line">    </div><div class="line">    <span class="comment">/*</span></div><div class="line">     * Returns the udid of the specified device.  The same value is returned</div><div class="line">     * from AMDeviceCopyValue(device,0,"UniqueDeviceID").</div><div class="line">     *</div><div class="line">     * Must be balanced by CFRelease()</div><div class="line">     */</div><div class="line">    <span class="function">CFStringRef <span class="title">AMDeviceCopyDeviceIdentifier</span><span class="params">(am_device device)</span></span>;</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="comment">/*edits by geohot*/</span></div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceDeactivate</span><span class="params">(am_device device)</span></span>;</div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceActivate</span><span class="params">(am_device device, CFMutableDictionaryRef)</span></span>;</div><div class="line">    <span class="comment">/*end*/</span></div><div class="line">    </div><div class="line"><span class="comment">//    kAMDError AMDeviceProxyGetECID(am_device device);</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">AMDDeviceDetached</span><span class="params">(am_device device)</span></span>;</div><div class="line">    </div><div class="line">    <span class="function">SSL *<span class="title">AMDServiceConnectionGetSecureIOContext</span><span class="params">(am_connection conn)</span></span>;</div><div class="line">    </div><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> mark - RecoveryDevice</span></div><div class="line">    </div><div class="line">    <span class="comment">/* Causes the restore functions to spit out (unhelpful) progress messages to</span></div><div class="line">     * the file specified by the given path. iTunes always calls this right before</div><div class="line">     * restoring with a path of</div><div class="line">     * "$HOME/Library/Logs/iPhone Updater Logs/iPhoneUpdater X.log", where X is an</div><div class="line">     * unused number.</div><div class="line">     */</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">AMRestoreEnableFileLogging</span><span class="params">(<span class="keyword">char</span> *path)</span></span>;</div><div class="line">    </div><div class="line">    <span class="comment">/* Initializes a new option dictionary to default values. Pass the constant</span></div><div class="line">     * kCFAllocatorDefault as the allocator. The option dictionary looks as</div><div class="line">     * follows:</div><div class="line">     * &#123;</div><div class="line">     *      NORImageType =&gt; 'production',</div><div class="line">     *      AutoBootDelay =&gt; 0,</div><div class="line">     *      KernelCacheType =&gt; 'Release',</div><div class="line">     *      UpdateBaseband =&gt; true,</div><div class="line">     *      DFUFileType =&gt; 'RELEASE',</div><div class="line">     *      SystemImageType =&gt; 'User',</div><div class="line">     *      CreateFilesystemPartitions =&gt; true,</div><div class="line">     *      FlashNOR =&gt; true,</div><div class="line">     *      RestoreBootArgs =&gt; 'rd=md0 nand-enable-reformat=1 -progress'</div><div class="line">     *      BootImageType =&gt; 'User'</div><div class="line">     *  &#125;</div><div class="line">     *</div><div class="line">     * Returns:</div><div class="line">     *      the option dictionary   if successful</div><div class="line">     *      NULL                    if out of memory</div><div class="line">     */</div><div class="line">    </div><div class="line">    <span class="function">CFMutableDictionaryRef <span class="title">AMRestoreCreateDefaultOptions</span><span class="params">(CFAllocatorRef allocator)</span></span>;</div><div class="line">    </div><div class="line">    <span class="function">kAMDError <span class="title">AMRestorePerformRecoveryModeRestore</span><span class="params">(am_recovery_device *rdev, CFDictionaryRef opts, <span class="keyword">void</span> *callback, <span class="keyword">void</span> *user_info)</span></span>;</div><div class="line">    <span class="function">kAMDError <span class="title">AMRestorePerformRestoreModeRestore</span><span class="params">(am_restore_device *rdev, CFDictionaryRef opts, <span class="keyword">void</span> *callback, <span class="keyword">void</span> *user_info)</span></span>;</div><div class="line">    </div><div class="line">    <span class="function">am_restore_device *<span class="title">AMRestoreModeDeviceCreate</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> unknown0, <span class="keyword">unsigned</span> <span class="keyword">int</span> connection_id, <span class="keyword">unsigned</span> <span class="keyword">int</span> unknown1)</span></span>;</div><div class="line">    </div><div class="line">    <span class="function">kAMDError <span class="title">AMRestoreCreatePathsForBundle</span><span class="params">(CFStringRef restore_bundle_path, CFStringRef kernel_cache_type, CFStringRef boot_image_type, <span class="keyword">unsigned</span> <span class="keyword">int</span> unknown0, CFStringRef *firmware_dir_path, CFStringRef *kernelcache_restore_path, <span class="keyword">unsigned</span> <span class="keyword">int</span> unknown1, CFStringRef *ramdisk_path)</span></span>;</div><div class="line">    </div><div class="line">    <span class="function">kAMDError <span class="title">AMRecoveryModeDeviceSetAutoBoot</span><span class="params">(am_recovery_device *rdev, CFStringRef state, <span class="keyword">int</span> unknown1, <span class="keyword">int</span> unknown2, <span class="keyword">int</span> unknown3)</span></span>;</div><div class="line">    <span class="function">kAMDError <span class="title">AMRecoveryModeDeviceReboot</span><span class="params">(am_recovery_device *rdev, CFStringRef state, <span class="keyword">int</span> unknown1, <span class="keyword">int</span> unknown2, <span class="keyword">int</span> unknown3)</span></span>;</div><div class="line">    </div><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> mark - MessageOperate</span></div><div class="line">    </div><div class="line">    <span class="keyword">kern_return_t</span> AMDeviceSendMessage(am_service socket, <span class="keyword">void</span> *unused, CFPropertyListRef plist);</div><div class="line">    <span class="keyword">kern_return_t</span> AMDeviceReceiveMessage(am_service socket, CFDictionaryRef options, CFPropertyListRef * result);</div><div class="line">    </div><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> mark - Application</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*InstallationProxyCallBack)</span><span class="params">(CFDictionaryRef dict, <span class="keyword">void</span> *arg)</span></span>;</div><div class="line">    </div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceLookupApplicationArchives</span><span class="params">(am_device device, CFDictionaryRef optionDict, CFDictionaryRef *archives)</span></span>;</div><div class="line">    </div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceLookupApplications</span><span class="params">(am_device device, CFDictionaryRef optionDict, CFDictionaryRef *appList)</span></span>;</div><div class="line">    </div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceRemoveApplicationArchive</span><span class="params">(am_service afcSock, CFStringRef cfBundleId, CFDictionaryRef optionDict, InstallationProxyCallBack callbackBlock, <span class="keyword">void</span> *unknown)</span></span>;</div><div class="line">    </div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceUninstallApplication</span><span class="params">(am_service afcSock, CFStringRef cfBundleId, CFDictionaryRef optionDict, InstallationProxyCallBack callbackBlock, <span class="keyword">void</span> *unknown)</span></span>;</div><div class="line">    </div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceInstallApplication</span><span class="params">(am_service installProxySock, CFStringRef cfStringPath, CFDictionaryRef optionDict, InstallationProxyCallBack installCallback, <span class="keyword">void</span> *unknow)</span></span>;</div><div class="line">    </div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceSecureTransferPath</span><span class="params">(am_service afcSock, am_device device, CFStringRef cfStringPath, CFDictionaryRef optionDict, InstallationProxyCallBack transferCallback, <span class="keyword">void</span> *delegate)</span></span>;</div><div class="line">    </div><div class="line">    <span class="function">kAMDError <span class="title">AMDeviceTransferApplication</span><span class="params">(am_service afcSock, CFStringRef cfStringPath, CFDictionaryRef optionDict, InstallationProxyCallBack transferCallback, <span class="keyword">void</span> *unknown)</span></span>;</div><div class="line">    </div><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> mark - Notification stuff</span></div><div class="line">    </div><div class="line">    <span class="comment">// Notification stuff - only call these on "com.apple.mobile.notification_proxy" (AMSVC_NOTIFICATION_PROXY)</span></div><div class="line">    <span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*NOTIFY_CALLBACK)</span><span class="params">(CFStringRef notification, <span class="keyword">void</span>* data)</span></span>;</div><div class="line">    </div><div class="line">    <span class="function">kAMDError <span class="title">AMDPostNotification</span><span class="params">(am_service socket, CFStringRef notification, CFStringRef userinfo)</span></span>;</div><div class="line">    </div><div class="line">    <span class="function">kAMDError <span class="title">AMDObserveNotification</span><span class="params">(am_service socket, CFStringRef notification)</span></span>;</div><div class="line">    </div><div class="line">    <span class="function">kAMDError <span class="title">AMDListenForNotifications</span><span class="params">(am_service socket, NOTIFY_CALLBACK cb, <span class="keyword">void</span>* data)</span></span>;</div><div class="line">    </div><div class="line">    <span class="function">kAMDError <span class="title">AMDShutdownNotificationProxy</span><span class="params">(am_service socket)</span></span>;</div><div class="line">    </div><div class="line">    </div><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> mark - AFC connection functions</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">const</span> <span class="keyword">char</span> * <span class="title">AFCGetClientVersionString</span><span class="params">(<span class="keyword">void</span>)</span></span>;		<span class="comment">// "@(#)PROGRAM:afc  PROJECT:afc-80"</span></div><div class="line">    </div><div class="line">    <span class="keyword">afc_error_t</span> AFCConnectionOpen(am_service handle,<span class="keyword">uint32_t</span> io_timeout,afc_connection *conn);</div><div class="line">    <span class="keyword">afc_error_t</span> AFCConnectionClose(afc_connection conn);</div><div class="line">    </div><div class="line">    <span class="keyword">uint32_t</span> AFCConnectionGetContext(afc_connection conn);</div><div class="line">    <span class="keyword">uint32_t</span> AFCConnectionSetContext(afc_connection conn, <span class="keyword">uint32_t</span> ctx);</div><div class="line">    </div><div class="line">    <span class="keyword">uint32_t</span> AFCConnectionGetContext(afc_connection conn);</div><div class="line">    <span class="keyword">uint32_t</span> AFCConnectionSetContext(afc_connection conn, <span class="keyword">uint32_t</span> ctx);</div><div class="line">    </div><div class="line">    <span class="keyword">uint32_t</span> AFCConnectionGetFSBlockSize(afc_connection conn);</div><div class="line">    <span class="keyword">uint32_t</span> AFCConnectionSetFSBlockSize(afc_connection conn, <span class="keyword">uint32_t</span> size);</div><div class="line">    </div><div class="line">    <span class="keyword">uint32_t</span> AFCConnectionGetIOTimeout(afc_connection conn);</div><div class="line">    <span class="keyword">uint32_t</span> AFCConnectionSetIOTimeout(afc_connection conn, <span class="keyword">uint32_t</span> timeout);</div><div class="line">    </div><div class="line">    <span class="keyword">uint32_t</span> AFCConnectionGetSocketBlockSize(afc_connection conn);</div><div class="line">    <span class="keyword">uint32_t</span> AFCConnectionSetSocketBlockSize(afc_connection conn, <span class="keyword">uint32_t</span> size);</div><div class="line">    </div><div class="line">    <span class="function">kAMDError <span class="title">AFCConnectionSetSecureContext</span><span class="params">(afc_connection conn, SSL *context)</span></span>;</div><div class="line">    </div><div class="line">    <span class="function">CFStringRef <span class="title">AFCCopyErrorString</span><span class="params">(afc_connection a)</span></span>;</div><div class="line">    <span class="function">CFTypeRef <span class="title">AFCConnectionCopyLastErrorInfo</span><span class="params">(afc_connection a)</span></span>;</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="comment">/* Opens an Apple File Connection. You must start the appropriate service</span></div><div class="line">     * first with AMDeviceStartService(). In iTunes, io_timeout is 0.</div><div class="line">     *</div><div class="line">     * Returns:</div><div class="line">     *      MDERR_OK                if successful</div><div class="line">     *      MDERR_AFC_OUT_OF_MEMORY if malloc() failed</div><div class="line">     */</div><div class="line">    </div><div class="line">    <span class="keyword">afc_error_t</span> AFCDirectoryAccessOpen(am_service handle,</div><div class="line">                                       <span class="keyword">uint32_t</span> io_timeout,</div><div class="line">                                       afc_connection *conn);</div><div class="line">    </div><div class="line">    <span class="comment">/* Retrieves an afc_dictionary that describes the connected device.  To</span></div><div class="line">     * extract values from the dictionary, use AFCKeyValueRead() and close</div><div class="line">     * it when finished with AFCKeyValueClose()</div><div class="line">     */</div><div class="line">    <span class="keyword">afc_error_t</span> AFCDeviceInfoOpen(afc_connection conn,</div><div class="line">                                  afc_dictionary *info);</div><div class="line">    </div><div class="line">    <span class="comment">/* Turns debug mode on if the environment variable AFCDEBUG is set to a numeric</span></div><div class="line">     * value, or if the file '/AFCDEBUG' is present and contains a value. */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">AFCPlatformInit</span><span class="params">()</span></span>;</div><div class="line">    </div><div class="line">    <span class="comment">/* Opens a directory on the iPhone. Retrieves an afc_directory which can be</span></div><div class="line">     * queried (with AFCDirectoryRead()) to enumerate through the filenames in</div><div class="line">     * the directory.  Once finished, close with AFCDirectoryClose()</div><div class="line">     *</div><div class="line">     * Note that this normally only accesses the iTunes sandbox/partition as the</div><div class="line">     * root, which is /var/root/Media. Pathnames are specified with '/' delimiters</div><div class="line">     * as in Unix style.</div><div class="line">     *</div><div class="line">     * Returns:</div><div class="line">     *      MDERR_OK                if successful</div><div class="line">     */</div><div class="line">    <span class="keyword">afc_error_t</span> AFCDirectoryOpen(afc_connection conn,<span class="keyword">const</span> <span class="keyword">char</span> *path,afc_directory *dir);</div><div class="line">    </div><div class="line">    <span class="comment">/* Acquires the next entry in a directory previously opened with</span></div><div class="line">     * AFCDirectoryOpen(). When dirent is filled with a NULL value, then the end</div><div class="line">     * of the directory has been reached. '.' and '..' will be returned as the</div><div class="line">     * first two entries in each directory except the root; you may want to skip</div><div class="line">     * over them.</div><div class="line">     *</div><div class="line">     * Returns:</div><div class="line">     *      MDERR_OK                if successful, even if no entries remain</div><div class="line">     */</div><div class="line">    </div><div class="line">    <span class="keyword">afc_error_t</span> AFCDirectoryRead(afc_connection conn,</div><div class="line">                                 afc_directory dir,</div><div class="line">                                 <span class="keyword">char</span> **dirent);</div><div class="line">    </div><div class="line">    <span class="comment">/* Close the directory previously opened with AFCDirectoryOpen()</span></div><div class="line">     */</div><div class="line">    <span class="keyword">afc_error_t</span> AFCDirectoryClose(afc_connection conn,</div><div class="line">                                  afc_directory dir);</div><div class="line">    </div><div class="line">    <span class="comment">/* Create a new directory on the device.</span></div><div class="line">     */</div><div class="line">    <span class="keyword">afc_error_t</span> AFCDirectoryCreate(afc_connection conn, <span class="keyword">const</span> <span class="keyword">char</span> *dirname);</div><div class="line">    </div><div class="line">    <span class="comment">/* Removes an existing file or directory from the device.</span></div><div class="line">     */</div><div class="line">    <span class="keyword">afc_error_t</span> AFCRemovePath(afc_connection conn, <span class="keyword">const</span> <span class="keyword">char</span> *dirname);</div><div class="line">    </div><div class="line">    <span class="comment">/* Renames an existing file or directory on the device */</span></div><div class="line">    <span class="keyword">afc_error_t</span> AFCRenamePath(afc_connection conn, <span class="keyword">const</span> <span class="keyword">char</span> *from, <span class="keyword">const</span> <span class="keyword">char</span> *to);</div><div class="line">    </div><div class="line">    <span class="comment">/* Returns the context field of the given AFC connection. */</span></div><div class="line">    <span class="keyword">uint32_t</span> AFCDirectoryAccessGetContext(afc_connection conn);</div><div class="line">    </div><div class="line">    <span class="comment">/* Set the context field of the given AFC connection.</span></div><div class="line">     */</div><div class="line">    <span class="keyword">uint32_t</span> AFCDirectoryAccessSetContext(afc_connection conn, <span class="keyword">uint32_t</span> ctx);</div><div class="line">    </div><div class="line">    <span class="comment">/* Returns the fs_block_size field of the given AFC connection. */</span></div><div class="line">    <span class="keyword">uint32_t</span> AFCDirectoryAccessGetFSBlockSize(afc_connection conn);</div><div class="line">    </div><div class="line">    <span class="comment">/* Returns the io_timeout field of the given AFC connection. In iTunes this is 0. */</span></div><div class="line">    <span class="keyword">uint32_t</span> AFCDirectoryAccessGetIOTimeout(afc_connection conn);</div><div class="line">    </div><div class="line">    <span class="keyword">uint32_t</span> AFCDirectoryAccessSetIOTimeout(afc_connection conn, <span class="keyword">uint32_t</span> timeout);</div><div class="line">    </div><div class="line">    <span class="comment">/* Returns the sock_block_size field of the given AFC connection. */</span></div><div class="line">    <span class="keyword">uint32_t</span> AFCDirectoryAccessGetSocketBlockSize(afc_connection conn);</div><div class="line">    </div><div class="line">    <span class="comment">/* Closes the given AFC connection. */</span></div><div class="line">    <span class="keyword">afc_error_t</span> AFCDirectoryAccessClose(afc_connection conn);</div><div class="line">    </div><div class="line">    <span class="comment">/* ----------------------------------------------------------------------------</span></div><div class="line">     *   Less-documented public routines</div><div class="line">     * ------------------------------------------------------------------------- */</div><div class="line">    <span class="keyword">afc_error_t</span> AFCFileRefOpen(afc_connection conn,</div><div class="line">                               <span class="keyword">const</span> <span class="keyword">char</span> *path,				<span class="comment">/* pathname of file to open */</span></div><div class="line">                               <span class="keyword">uint64_t</span> mode,					<span class="comment">/* 1=read, 2=write, 3=read/write */</span></div><div class="line">                               afc_file_ref *ref);</div><div class="line">    </div><div class="line">    <span class="keyword">afc_error_t</span> AFCFileRefSeek(afc_connection conn,</div><div class="line">                               afc_file_ref ref,</div><div class="line">                               <span class="keyword">int64_t</span> offset,				<span class="comment">/* signed offset from pos */</span></div><div class="line">                               <span class="keyword">uint64_t</span> pos);				<span class="comment">/* 0=SEEK_SET, 1=SEEK_CUR, 2=SEEK_END */</span></div><div class="line">    </div><div class="line">    <span class="keyword">afc_error_t</span> AFCFileRefTell(afc_connection conn,</div><div class="line">                               afc_file_ref ref,</div><div class="line">                               <span class="keyword">uint64_t</span> *offset);</div><div class="line">    </div><div class="line">    <span class="comment">// afc_error_t AFCFileRefLock(afc_connection *conn, afc_file_ref ref,</span></div><div class="line">    <span class="comment">//    ...);</span></div><div class="line">    <span class="comment">// int _AFCDirectoryAccessIsValid(afc_connection *conn)</span></div><div class="line">    </div><div class="line">    <span class="keyword">afc_error_t</span> AFCFileRefRead(afc_connection conn, afc_file_ref ref, <span class="keyword">void</span> *buf, <span class="keyword">uint32_t</span> *len);</div><div class="line">    </div><div class="line">    <span class="keyword">afc_error_t</span> AFCFileRefSetFileSize(afc_connection conn, afc_file_ref ref, <span class="keyword">uint64_t</span> offset);</div><div class="line">    </div><div class="line">    <span class="keyword">afc_error_t</span> AFCFileRefWrite(afc_connection conn, afc_file_ref ref, <span class="keyword">const</span> <span class="keyword">void</span> *buf, <span class="keyword">uint32_t</span> len);</div><div class="line">    </div><div class="line">    <span class="keyword">afc_error_t</span> AFCFileRefClose(afc_connection conn, afc_file_ref ref);</div><div class="line">    </div><div class="line">    <span class="keyword">afc_error_t</span> AFCFileInfoOpen(afc_connection conn, <span class="keyword">const</span> <span class="keyword">char</span> *path, afc_dictionary *info);</div><div class="line">    </div><div class="line">    <span class="keyword">afc_error_t</span> AFCKeyValueRead(afc_dictionary dict, <span class="keyword">char</span> **key, <span class="keyword">char</span> **val);</div><div class="line">    </div><div class="line">    <span class="keyword">afc_error_t</span> AFCKeyValueClose(afc_dictionary dict);</div><div class="line">    </div><div class="line">    <span class="keyword">afc_error_t</span> AFCLinkPath(afc_connection conn,<span class="keyword">uint64_t</span> mode, <span class="keyword">const</span> <span class="keyword">char</span> *target,<span class="keyword">const</span> <span class="keyword">char</span> *link);</div><div class="line">    </div><div class="line">    <span class="keyword">afc_error_t</span> AFCConnectionProcessOperation(afc_connection a1, afc_operation op, <span class="keyword">double</span> timeout);</div><div class="line">    <span class="keyword">afc_error_t</span> AFCOperationGetResultStatus(afc_operation op);</div><div class="line">    <span class="function">CFTypeRef <span class="title">AFCOperationGetResultObject</span><span class="params">(afc_operation op)</span></span>;</div><div class="line">    <span class="function">CFTypeID <span class="title">AFCOperationGetTypeID</span><span class="params">(afc_operation op)</span></span>;</div><div class="line">    <span class="keyword">afc_error_t</span> AFCOperationSetContext(afc_operation op, <span class="keyword">void</span> *ctx);</div><div class="line">    <span class="function"><span class="keyword">void</span> *<span class="title">AFCOperationGetContext</span><span class="params">(afc_operation op)</span></span>;</div><div class="line">    </div><div class="line">    <span class="comment">// each of these returns an op, with the appropriate request encoded.  The value of ctx is</span></div><div class="line">    <span class="comment">// available via AFCOperationGetContext()</span></div><div class="line">    <span class="function">afc_operation <span class="title">AFCOperationCreateGetConnectionInfo</span><span class="params">(CFAllocatorRef allocator, <span class="keyword">void</span> *ctx)</span></span>;</div><div class="line">    <span class="function">afc_operation <span class="title">AFCOperationCreateGetDeviceInfo</span><span class="params">(CFAllocatorRef allocator, <span class="keyword">void</span> *ctx)</span></span>;</div><div class="line">    <span class="function">afc_operation <span class="title">AFCOperationCreateGetFileHash</span><span class="params">(CFAllocatorRef allocator, CFStringRef filename, <span class="keyword">void</span> *ctx)</span></span>;</div><div class="line">    <span class="function">afc_operation <span class="title">AFCOperationCreateGetFileInfo</span><span class="params">(CFAllocatorRef allocator, CFStringRef filename, <span class="keyword">void</span> *ctx)</span></span>;</div><div class="line">    <span class="function">afc_operation <span class="title">AFCOperationCreateLinkPath</span><span class="params">(CFAllocatorRef allocator, <span class="keyword">uint32_t</span> mode, CFStringRef filename1, CFStringRef filename2, <span class="keyword">void</span> *ctx)</span></span>;</div><div class="line">    <span class="function">afc_operation <span class="title">AFCOperationCreateMakeDirectory</span><span class="params">(CFAllocatorRef allocator, CFStringRef filename, <span class="keyword">void</span> *ctx)</span></span>;</div><div class="line">    <span class="function">afc_operation <span class="title">AFCOperationCreateOpenFile</span><span class="params">(CFAllocatorRef allocator, CFStringRef filename, <span class="keyword">void</span> *ctx)</span></span>;</div><div class="line">    <span class="function">afc_operation <span class="title">AFCOperationCreateReadDirectory</span><span class="params">(CFAllocatorRef allocator, CFStringRef filename, <span class="keyword">void</span> *ctx)</span></span>;</div><div class="line">    <span class="function">afc_operation <span class="title">AFCOperationCreateRemovePath</span><span class="params">(CFAllocatorRef allocator, CFStringRef filename, <span class="keyword">void</span> *ctx)</span></span>;</div><div class="line">    <span class="function">afc_operation <span class="title">AFCOperationCreateRenamePath</span><span class="params">(CFAllocatorRef allocator, CFStringRef oldname, CFStringRef newname, <span class="keyword">void</span> *ctx)</span></span>;</div><div class="line">    <span class="function">afc_operation <span class="title">AFCOperationCreateSetConnectionOptions</span><span class="params">(CFAllocatorRef allocator, CFDictionaryRef dict, <span class="keyword">void</span> *ctx)</span></span>;</div><div class="line">    <span class="function">afc_operation <span class="title">AFCOperationCreateSetModTime</span><span class="params">(CFAllocatorRef allocator, CFStringRef filename, <span class="keyword">uint64_t</span> mtm, <span class="keyword">void</span> *ctx)</span></span>;</div><div class="line">    </div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></div><div class="line">&#125;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p>看到这里你可能会想问返回值中 <strong><em>kAMDError</em></strong> 是什么？ 别急，往下看<br>其实 <strong><em>kAMDError</em></strong> 其实只是一个枚举 ：</p>
+<blockquote>
+<h5 id="kAMDError-Code"><a href="#kAMDError-Code" class="headerlink" title="kAMDError Code"></a><strong>kAMDError Code</strong></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> kAMDError &#123;</div><div class="line">    </div><div class="line">    kAMDAlreadyArchivedError = <span class="number">-402653094</span>,</div><div class="line">    kAMDApplicationAlreadyInstalledError = <span class="number">-402653130</span>,</div><div class="line">    kAMDApplicationMoveFailedError,</div><div class="line">    kAMDApplicationSandboxFailedError = <span class="number">-402653127</span>,</div><div class="line">    kAMDApplicationSINFCaptureFailedError = <span class="number">-402653128</span>,</div><div class="line">    kAMDApplicationVerificationFailedError = <span class="number">-402653126</span>,</div><div class="line">    kAMDArchiveDestructionFailedError,</div><div class="line">    kAMDBadHeaderError = <span class="number">-402653182</span>,</div><div class="line">    kAMDBundleVerificationFailedError = <span class="number">-402653124</span>,</div><div class="line">    kAMDBusyError = <span class="number">-402653167</span>,</div><div class="line">    kAMDCarrierBundleCopyFailedError = <span class="number">-402653123</span>,</div><div class="line">    kAMDCarrierBundleDirectoryCreationFailedError,</div><div class="line">    kAMDCarrierBundleMissingSupportedSIMsError,</div><div class="line">    kAMDCheckinTimeoutError = <span class="number">-402653148</span>,</div><div class="line">    kAMDCommCenterNotificationFailedError = <span class="number">-402653120</span>,</div><div class="line">    kAMDContainerCreationFailedError,</div><div class="line">    kAMDContainerP0wnFailedError,</div><div class="line">    kAMDContainerRemovalFailedError,</div><div class="line">    kAMDCryptoError = <span class="number">-402653166</span>,</div><div class="line">    kAMDDigestFailedError = <span class="number">-402653135</span>,</div><div class="line">    kAMDEmbeddedProfileInstallFailedError = <span class="number">-402653116</span>,</div><div class="line">    kAMDEOFError = <span class="number">-402653170</span>,</div><div class="line">    kAMDErrorError = <span class="number">-402653115</span>,</div><div class="line">    kAMDExecutableTwiddleFailedError,</div><div class="line">    kAMDExistenceCheckFailedError,</div><div class="line">    kAMDFileExistsError = <span class="number">-402653168</span>,</div><div class="line">    kAMDGetProhibitedError = <span class="number">-402653162</span>,</div><div class="line">    kAMDImmutableValueError = <span class="number">-402653159</span>,</div><div class="line">    kAMDInstallMapUpdateFailedError = <span class="number">-402653112</span>,</div><div class="line">    kAMDInvalidActivationRecordError = <span class="number">-402653146</span>,</div><div class="line">    kAMDInvalidArgumentError = <span class="number">-402653177</span>,</div><div class="line">    kAMDInvalidCheckinError = <span class="number">-402653149</span>,</div><div class="line">    kAMDInvalidDiskImageError = <span class="number">-402653133</span>,</div><div class="line">    kAMDInvalidHostIDError = <span class="number">-402653156</span>,</div><div class="line">    kAMDInvalidResponseError = <span class="number">-402653165</span>,</div><div class="line">    kAMDInvalidServiceError = <span class="number">-402653150</span>,</div><div class="line">    kAMDInvalidSessionIDError = <span class="number">-402653152</span>,</div><div class="line">    kAMDIsDirectoryError = <span class="number">-402653175</span>,</div><div class="line">    kAMDiTunesArtworkCaptureFailedError = <span class="number">-402653096</span>,</div><div class="line">    kAMDiTunesMetadataCaptureFailedError,</div><div class="line">    kAMDManifestCaptureFailedError = <span class="number">-402653111</span>,</div><div class="line">    kAMDMapGenerationFailedError,</div><div class="line">    kAMDMissingActivationRecordError = <span class="number">-402653145</span>,</div><div class="line">    kAMDMissingBundleExecutableError = <span class="number">-402653109</span>,</div><div class="line">    kAMDMissingBundleIdentifierError,</div><div class="line">    kAMDMissingBundlePathError,</div><div class="line">    kAMDMissingContainerError,</div><div class="line">    kAMDMissingDigestError = <span class="number">-402653132</span>,</div><div class="line">    kAMDMissingHostIDError = <span class="number">-402653157</span>,</div><div class="line">    kAMDMissingImageTypeError = <span class="number">-402653136</span>,</div><div class="line">    kAMDMissingKeyError = <span class="number">-402653164</span>,</div><div class="line">    kAMDMissingOptionsError = <span class="number">-402653137</span>,</div><div class="line">    kAMDMissingPairRecordError = <span class="number">-402653147</span>,</div><div class="line">    kAMDMissingServiceError = <span class="number">-402653151</span>,</div><div class="line">    kAMDMissingSessionIDError = <span class="number">-402653153</span>,</div><div class="line">    kAMDMissingValueError = <span class="number">-402653163</span>,</div><div class="line">    kAMDMuxError = <span class="number">-402653131</span>,</div><div class="line">    kAMDNoResourcesError = <span class="number">-402653181</span>,</div><div class="line">    kAMDNotConnectedError = <span class="number">-402653173</span>,</div><div class="line">    kAMDNotFoundError = <span class="number">-402653176</span>,</div><div class="line">    kAMDNotificationFailedError = <span class="number">-402653105</span>,</div><div class="line">    kAMDOverrunError = <span class="number">-402653171</span>,</div><div class="line">    kAMDPackageExtractionFailedError = <span class="number">-402653104</span>,</div><div class="line">    kAMDPackageInspectionFailedError,</div><div class="line">    kAMDPackageMoveFailedError,</div><div class="line">    kAMDPasswordProtectedError = <span class="number">-402653158</span>,</div><div class="line">    kAMDPathConversionFailedError = <span class="number">-402653101</span>,</div><div class="line">    kAMDPermissionError = <span class="number">-402653174</span>,</div><div class="line">    kAMDProvisioningProfileNotValid = <span class="number">-402653140</span>,</div><div class="line">    kAMDReadError = <span class="number">-402653180</span>,</div><div class="line">    kAMDReceiveMessageError = <span class="number">-402653138</span>,</div><div class="line">    kAMDRemoveProhibitedError = <span class="number">-402653160</span>,</div><div class="line">    kAMDRestoreContainerFailedError = <span class="number">-402653100</span>,</div><div class="line">    kAMDSeatbeltProfileRemovalFailedError,</div><div class="line">    kAMDSendMessageError = <span class="number">-402653139</span>,</div><div class="line">    kAMDSessionActiveError = <span class="number">-402653155</span>,</div><div class="line">    kAMDSessionInactiveError,</div><div class="line">    kAMDSetProhibitedError = <span class="number">-402653161</span>,</div><div class="line">    kAMDStageCreationFailedError = <span class="number">-402653098</span>,</div><div class="line">    kAMDStartServiceError = <span class="number">-402653134</span>,</div><div class="line">    kAMDSuccess = <span class="number">0</span>,</div><div class="line">    kAMDSUFirmwareError = <span class="number">-402653141</span>,</div><div class="line">    kAMDSUPatchError = <span class="number">-402653142</span>,</div><div class="line">    kAMDSUVerificationError = <span class="number">-402653143</span>,</div><div class="line">    kAMDSymlinkFailedError = <span class="number">-402653097</span>,</div><div class="line">    kAMDTimeOutError = <span class="number">-402653172</span>,</div><div class="line">    kAMDUndefinedError = <span class="number">-402653183</span>,</div><div class="line">    kAMDUnknownPacketError = <span class="number">-402653178</span>,</div><div class="line">    kAMDUnsupportedError = <span class="number">-402653169</span>,</div><div class="line">    kAMDWriteError = <span class="number">-402653179</span>,</div><div class="line">    kAMDWrongDroidError = <span class="number">-402653144</span>,</div><div class="line">    kAMDTrustComputerError = <span class="number">-402653034</span></div><div class="line">&#125; kAMDError;</div></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>嗯 先说到这里吧。 博主大大懒惰症又犯了…XD</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mac-iOS助手开发/" rel="tag"># Mac, iOS助手开发</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/importPKCS12/" rel="next" title="importPKCS12">
+                <i class="fa fa-chevron-left"></i> importPKCS12
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/iOS助手开发2-设备连接/" rel="prev" title="iOS助手开发2-设备连接">
+                iOS助手开发2-设备连接 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODczMi81MzAz"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章資料夾
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="MartinLau" />
+          <p class="site-author-name" itemprop="name">MartinLau</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/martinlau7" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/206253536" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:martinlau@livemail.tw" target="_blank" title="電子信箱">
+                  
+                    <i class="fa fa-fw fa-envelope-o"></i>
+                  
+                  電子信箱
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://hexo.io/zh-tw/" title="Hexo" target="_blank">Hexo</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.bombox.org" title="bomo的开发随笔" target="_blank">bomo的开发随笔</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#依赖库"><span class="nav-number">2.1.</span> <span class="nav-text">依赖库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#开发语言"><span class="nav-number">2.2.</span> <span class="nav-text">开发语言</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#api-headers-Code"><span class="nav-number">2.3.</span> <span class="nav-text">api-headers Code</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#kAMDError-Code"><span class="nav-number">2.4.</span> <span class="nav-text">kAMDError Code</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MartinLau</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力支援
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
