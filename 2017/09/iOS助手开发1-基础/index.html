@@ -5,11 +5,14 @@
   
 
 
-<html class="theme-next pisces use-motion">
+<html class="theme-next pisces use-motion" lang="zh-tw">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
 
 
 
@@ -27,9 +30,12 @@
 
 
 
+
+
+
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -63,9 +69,9 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Mac, iOS助手开发," />
@@ -79,7 +85,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
 
 
 
@@ -91,16 +97,16 @@
 
 前言如果你厌恶iTunes带来的繁琐，却想要通过macOS来连接你的iPhone， 并和iTunes一样管理你的手机，甚至简化一些步骤，你可能需要看看这篇文章了。想要和iTunes一样连接管理iPhone装置，我们需要了解到他的private api，这">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS助手开发（1）">
-<meta property="og:url" content="http://blog.martinlau.org/2017/03/18/iOS助手开发（1）/index.html">
+<meta property="og:title" content="iOS助手开发1-基础">
+<meta property="og:url" content="http://blog.martinlau.org/2017/09/iOS助手开发1-基础/index.html">
 <meta property="og:site_name" content="Martin's TechNet Blog">
 <meta property="og:description" content="Hi， 太久没有写文章了，准备勤快的更新了。文章以后将开始用简体中文开始写了， 可能有词还是繁体直译，看不懂莫怪，哈哈（跑题了） 言归正传
 
 
 前言如果你厌恶iTunes带来的繁琐，却想要通过macOS来连接你的iPhone， 并和iTunes一样管理你的手机，甚至简化一些步骤，你可能需要看看这篇文章了。想要和iTunes一样连接管理iPhone装置，我们需要了解到他的private api，这">
-<meta property="og:updated_time" content="2017-03-18T17:50:27.000Z">
+<meta property="og:updated_time" content="2017-09-19T06:35:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS助手开发（1）">
+<meta name="twitter:title" content="iOS助手开发1-基础">
 <meta name="twitter:description" content="Hi， 太久没有写文章了，准备勤快的更新了。文章以后将开始用简体中文开始写了， 可能有词还是繁体直译，看不懂莫怪，哈哈（跑题了） 言归正传
 
 
@@ -108,32 +114,47 @@
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"always"},
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '2210845',
+      userId: '0',
       author: '博主大大'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
+  <link rel="canonical" href="http://blog.martinlau.org/2017/09/iOS助手开发1-基础/"/>
 
-  <link rel="canonical" href="http://blog.martinlau.org/2017/03/18/iOS助手开发（1）/"/>
 
 
-  <title> iOS助手开发（1） | Martin's TechNet Blog </title>
+
+
+  <title>iOS助手开发1-基础 | Martin's TechNet Blog</title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-tw">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
 
   
+
+
+
+
+
 
 
 
@@ -149,29 +170,33 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Martin's TechNet Blog</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Martin's TechNet Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">用程式碼記錄成長</h1>
+      
   </div>
-  <p class="site-subtitle">用程式碼記錄成長</p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -184,6 +209,8 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
             首頁
           </a>
         </li>
@@ -191,6 +218,8 @@
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             歸檔
           </a>
@@ -200,6 +229,8 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
             分類
           </a>
         </li>
@@ -208,6 +239,8 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
             標籤
           </a>
         </li>
@@ -215,6 +248,8 @@
         
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             關於
           </a>
@@ -227,6 +262,8 @@
 
   
 </nav>
+
+
 
  </div>
     </header>
@@ -241,49 +278,64 @@
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.martinlau.org/2017/09/iOS助手开发1-基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MartinLau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Martin's TechNet Blog">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                iOS助手开发（1）
-              
-            
-          </h1>
+          <h2 class="post-title" itemprop="name headline">iOS助手开发1-基础</h2>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2017-03-18T17:00:05+08:00" content="2017-03-18">
-              2017-03-18
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-09-19T14:35:08+08:00">
+                2017-09-19
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分類於</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Mac-开发/" itemprop="url" rel="index">
                     <span itemprop="name">Mac 开发</span>
                   </a>
@@ -291,32 +343,26 @@
 
                 
                 
-
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/03/18/iOS助手开发（1）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/18/iOS助手开发（1）/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -328,8 +374,7 @@
 <p><strong>Hi， 太久没有写文章了，准备勤快的更新了。文章以后将开始用简体中文开始写了， 可能有词还是繁体直译，看不懂莫怪，哈哈（跑题了） 言归正传</strong></p>
 </blockquote>
 <hr>
-<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h4><p>如果你厌恶iTunes带来的繁琐，却想要通过macOS来连接你的iPhone， 并和iTunes一样管理你的手机，甚至简化一些步骤，你可能需要看看这篇文章了。想要和iTunes一样连接管理iPhone装置，我们需要了解到他的private api，这可能需要你懂得反组译，我这里并不准备说明怎么反组译，你可能需要自行google it。<br><strong>so sad : (</strong></p>
-<a id="more"></a>
+<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h4><p>如果你厌恶iTunes带来的繁琐，却想要通过macOS来连接你的iPhone， 并和iTunes一样管理你的手机，甚至简化一些步骤，你可能需要看看这篇文章了。想要和iTunes一样连接管理iPhone装置，我们需要了解到他的private api，这可能需要你懂得反组译，我这里并不准备说明怎么反组译，你可能需要自行google it。<br><strong>so sad : (</strong><br><a id="more"></a></p>
 <p>那么我们应该从哪里找到这个private api呢？iTunes其实也是调用了<strong>/System/Library/PrivateFrameworks/MobileDevice.framework</strong>这个库，里面包含了对iOS装置连接和通讯的函式，你可以自行研究一下反组译。<br>当然你如果太懒，就用我整理好的吧，基本我整理差不多了。<br>由于macOS基本是64bit开发了，所以我以后将以64bit做基础开发和讲解。</p>
 <h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><blockquote>
 <h5 id="依赖库"><a href="#依赖库" class="headerlink" title="依赖库"></a><strong>依赖库</strong></h5><ul>
@@ -366,26 +411,43 @@
       
     </div>
 
+    <div>
+      
+        
+
+      
+    </div>
+
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/Mac-iOS助手开发/" rel="tag">#Mac, iOS助手开发</a>
+            <a href="/tags/Mac-iOS助手开发/" rel="tag"># Mac, iOS助手开发</a>
           
         </div>
+      
+
+      
+        
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/06/importPKCS12/" rel="next" title="importPKCS12">
-                <i class="fa fa-chevron-left"></i> importPKCS12
+              <a href="/2017/09/iOS助手开发2-设备连接/" rel="next" title="iOS助手开发2-设备连接">
+                <i class="fa fa-chevron-left"></i> iOS助手开发2-设备连接
               </a>
             
           </div>
 
+          <span class="post-nav-divider"></span>
+
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/PARSING-MACH-O-FILES/" rel="prev" title="解析Object File Mach-O Header">
+                解析Object File Mach-O Header <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -434,9 +496,7 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/18/iOS助手开发（1）/"
-           data-title="iOS助手开发（1）" data-url="http://blog.martinlau.org/2017/03/18/iOS助手开发（1）/">
-      </div>
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODczMi81MzAz"></div>
     
   </div>
 
@@ -461,7 +521,7 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目錄
+            文章資料夾
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
             本站概覽
@@ -469,25 +529,32 @@
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
                alt="MartinLau" />
           <p class="site-author-name" itemprop="name">MartinLau</p>
-          <p class="site-description motion-element" itemprop="description">MartinLau 的技術網誌</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">3</span>
-              <span class="site-state-item-name">文章</span>
-            </a>
-          </div>
 
           
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分類</span>
               </a>
@@ -495,9 +562,11 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">3</span>
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">標籤</span>
               </a>
             </div>
@@ -558,10 +627,10 @@
 
         
         
-          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
             <div class="links-of-blogroll-title">
               <i class="fa  fa-fw fa-globe"></i>
-              交換連接
+              
             </div>
             <ul class="links-of-blogroll-list">
               
@@ -570,26 +639,36 @@
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://blog.bomobox.org" title="bomo的开发随笔" target="_blank">bomo的开发随笔</a>
+                  <a href="http://blog.bombox.org" title="bomo的开发随笔" target="_blank">bomo的开发随笔</a>
                 </li>
               
             </ul>
           </div>
         
 
+        
+
+
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#依赖库"><span class="nav-number">2.1.</span> <span class="nav-text">依赖库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#开发语言"><span class="nav-number">2.2.</span> <span class="nav-text">开发语言</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#api-headers-Code"><span class="nav-number">2.3.</span> <span class="nav-text">api-headers Code</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#kAMDError-Code"><span class="nav-number">2.4.</span> <span class="nav-text">kAMDError Code</span></a></li></ol></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
+      
+
       
 
     </div>
@@ -604,16 +683,17 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">MartinLau</span>
 </div>
 
+
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力支援
 </div>
 
 <div class="theme-info">
@@ -623,15 +703,20 @@
   </a>
 </div>
 
+
         
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -654,81 +739,9 @@
 
 
 
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
 
 
 
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
-
-
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"martinlau"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
 
 
 
@@ -736,36 +749,137 @@
 
 
   
-  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-  </script>
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for (i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-    });
-  </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
   
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
 
 </body>
 </html>
