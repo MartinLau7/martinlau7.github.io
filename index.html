@@ -1,4 +1,7 @@
-<!doctype html>
+<!DOCTYPE html>
+
+
+
 
 
 
@@ -9,7 +12,14 @@
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
@@ -33,36 +43,7 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
 
 
 
@@ -71,36 +52,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
 
 
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.2.0">
 
 
-
-  <link rel="alternate" href="/atom.xml" title="Martin's TechNet Blog" type="application/atom+xml" />
-
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.2.0">
 
 
-
-  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
 
 
 
 
 
 
-<meta name="description" content="MartinLau 的技術網誌">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Martin's TechNet Blog">
-<meta property="og:url" content="http://blog.martinlau.org/index.html">
-<meta property="og:site_name" content="Martin's TechNet Blog">
-<meta property="og:description" content="MartinLau 的技術網誌">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Martin's TechNet Blog">
-<meta name="twitter:description" content="MartinLau 的技術網誌">
 
 
 
@@ -109,13 +79,13 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主大大'
-    },
+    version: '6.2.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -127,18 +97,39 @@
 </script>
 
 
+  
+
+
+
+
+  <meta name="description" content="MartinLau 的技術網誌">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Martin's TechNet Blog">
+<meta property="og:url" content="http://blog.martinlau.org/index.html">
+<meta property="og:site_name" content="Martin's TechNet Blog">
+<meta property="og:description" content="MartinLau 的技術網誌">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Martin's TechNet Blog">
+<meta name="twitter:description" content="MartinLau 的技術網誌">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Martin's TechNet Blog" type="application/atom+xml" />
+
+
+
 
   <link rel="canonical" href="http://blog.martinlau.org/"/>
 
 
 
-
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>Martin's TechNet Blog</title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
-
   
 
 
@@ -149,11 +140,36 @@
 
 
 
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
 
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
 
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
 
+</head>
 
-
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
 
   
   
@@ -161,8 +177,7 @@
   
 
   <div class="container sidebar-position-left 
-   page-home 
- ">
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -171,7 +186,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Martin's TechNet Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -183,7 +198,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -191,78 +206,122 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首頁
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            歸檔
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分類
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home menu-item-active">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+  </li>
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            標籤
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            關於
-          </a>
-        </li>
-      
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategorien<span class="badge">2</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv<span class="badge">5</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags<span class="badge">4</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Über</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+    <a href="/404/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />Commonweal 404</a>
+  </li>
 
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Suche</a>
+        </li>
       
     </ul>
   
 
   
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
 </nav>
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
+          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
@@ -275,7 +334,13 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.martinlau.org/2018/04/PARSING-MACH-O-FILES/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -295,25 +360,52 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/PARSING-MACH-O-FILES/" itemprop="url">解析Object File Mach-O Header</a></h2>
+                <a class="post-title-link" href="/2018/04/PARSING-MACH-O-FILES/" itemprop="url">
+                  解析Object File Mach-O Header
+                </a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">發表於</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-04-24T21:37:42+08:00">
-                2018-04-24
-              </time>
+
+              
+                
+              
+
+              <time title="Post created: 2018-04-24 21:37:42" itemprop="dateCreated datePublished" datetime="2018-04-24T21:37:42+08:00">2018-04-24</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2018-04-25 02:57:15" itemprop="dateModified" datetime="2018-04-25T02:57:15+08:00">2018-04-25</time>
+              
             
           </span>
 
@@ -326,14 +418,10 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分類於</span>
+                <span class="post-meta-item-text">in</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mac-开发/" itemprop="url" rel="index">
-                    <span itemprop="name">Mac 开发</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mac-开发/" itemprop="url" rel="index"><span itemprop="name">Mac 开发</span></a></span>
 
                 
                 
@@ -358,182 +446,9 @@
       </header>
     
 
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>前言<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">本文将介绍如何解析 Mach-O Object 文件的部分 Header， 请注意这不是一个准备的指南，但希望可以给你一个帮助。</div><div class="line">更多可用的参考指南，请查阅和翻查Apple提供的文档。</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="什么是Mach-O-文件"><a href="#什么是Mach-O-文件" class="headerlink" title="什么是Mach-O 文件"></a><strong>什么是Mach-O 文件</strong></h2><p><strong>摘自<a href="https://zh.wikipedia.org/wiki/Mach-O" target="_blank" rel="external">中文維基百科</a></strong></p>
-<blockquote>
-<p>Mach-O为Mach Object文件格式的缩写，它是一种用于可执行文件，目标代码，动态库，内核转储的文件格式。作为a.out格式的替代，Mach-O提供了更强的扩展性，并提升了符号表中信息的访问速度。</p>
-<p>Mach-O曾经为大部分基于Mach核心的操作系统所使用。NeXTSTEP，Darwin和Mac OS X等系统使用这种格式作为其原生可执行文件，库和目标代码的格式。而同样使用GNU Mach作为其微内核的GNU Hurd系统则使用ELF而非Mach-O作为其标准的二进制文件格式。</p>
-</blockquote>
-<h2 id="Mach-O-结构"><a href="#Mach-O-结构" class="headerlink" title="Mach-O 结构"></a><strong>Mach-O 结构</strong></h2><p>典型的Mach-O文件（对应官方文档 ）由三个区域組成(如下图所示)：</p>
-<ol>
-<li>Header - 包含二进制的一般信息：字节顺序（魔数），CPU类型，加载命令的数量等。</li>
-<li>Load commands - 这是一种目录表，它描述了段的位置，符号表，动态符号表等。每个加载命令都包含一个元信息，例如命令类型，名称，在二进制文件中的位置等等。</li>
-<li>Data - 通常是目标文件的最大部分。 它包含代码和数据，如符号表，动态符号表等。</li>
-</ol>
-<p><img src="https://martin-1251734296.cos.ap-hongkong.myqcloud.com/%E8%A7%A3%E6%9E%90Object%20File%20Mach-O%20Header/WechatIMG274.jpeg" alt=""></p>
-<p>在macOS 上有两种类型的object 文件， Mach-O 和通用二进制文件（Universal Binary），通用二进制文件又称胖二进制（Binary）.他们之间区别在于Mach-O 只包含一个CPU 架构（i386，x86_64，arm64等）的目标代码，而通用二进制文件则可能包含多个CPU 架构（i386，x86_64，arm64等）的目标代码。<br><img src="https://martin-1251734296.cos.ap-hongkong.myqcloud.com/%E8%A7%A3%E6%9E%90Object%20File%20Mach-O%20Header/fat_header.png" alt=""></p>
-<h2 id="Mach-O-Header数据结构"><a href="#Mach-O-Header数据结构" class="headerlink" title="Mach-O Header数据结构"></a><strong>Mach-O Header数据结构</strong></h2><p><strong>32位结构</strong><br><figure class="highlight h"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> mach_header &#123;</div><div class="line">    <span class="keyword">uint32_t</span>    magic;      <span class="comment">/* mach magic number identifier */</span></div><div class="line">    <span class="keyword">cpu_type_t</span>  cputype;    <span class="comment">/* cpu specifier */</span></div><div class="line">    <span class="keyword">cpu_subtype_t</span>   cpusubtype; <span class="comment">/* machine specifier */</span></div><div class="line">    <span class="keyword">uint32_t</span>    filetype;   <span class="comment">/* type of file */</span></div><div class="line">    <span class="keyword">uint32_t</span>    ncmds;      <span class="comment">/* number of load commands */</span></div><div class="line">    <span class="keyword">uint32_t</span>    sizeofcmds; <span class="comment">/* the size of all the load commands */</span></div><div class="line">    <span class="keyword">uint32_t</span>    flags;      <span class="comment">/* flags */</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<p><strong>64位结构</strong><br><figure class="highlight h"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> mach_header_64 &#123;</div><div class="line">    <span class="keyword">uint32_t</span>    magic;      <span class="comment">/* mach magic number identifier */</span></div><div class="line">    <span class="keyword">cpu_type_t</span>  cputype;    <span class="comment">/* cpu specifier */</span></div><div class="line">    <span class="keyword">cpu_subtype_t</span>   cpusubtype; <span class="comment">/* machine specifier */</span></div><div class="line">    <span class="keyword">uint32_t</span>    filetype;   <span class="comment">/* type of file */</span></div><div class="line">    <span class="keyword">uint32_t</span>    ncmds;      <span class="comment">/* number of load commands */</span></div><div class="line">    <span class="keyword">uint32_t</span>    sizeofcmds; <span class="comment">/* the size of all the load commands */</span></div><div class="line">    <span class="keyword">uint32_t</span>    flags;      <span class="comment">/* flags */</span></div><div class="line">    <span class="keyword">uint32_t</span>    reserved;   <span class="comment">/* reserved */</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<p><u>对比来看64位结构相较于32位结构多一个保留字段而已</u></p>
-<blockquote>
-<p>结构中字段解释 ：</p>
-<p><strong>magic</strong>： 魔数快速判定该文件类型</p>
-<p><strong>cputype</strong>： CPU类型（i386，x86_64，arm6，arm64 等）</p>
-<p><strong>cpusubtype</strong>： 对应的CPU子类型（arm64、armv7 等）</p>
-<p><strong>filetype</strong>： 文件类型(executable、Library、Dsym等)</p>
-<p><strong>ncmds</strong>： 加载命令数量</p>
-<p><strong>sizeofcmds</strong>： 所有加载命令的大小</p>
-<p><strong><u>flags</u></strong>： 文件标志</p>
-</blockquote>
-<h2 id="开始解析"><a href="#开始解析" class="headerlink" title="开始解析"></a><strong>开始解析</strong></h2><p>首先读取目标魔数<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;mach-o/loader.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;mach-o/swap.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;mach-o/fat.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dump_segments</span><span class="params">(FILE *obj_file)</span></span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line">  <span class="keyword">const</span> <span class="keyword">char</span> *filename = argv[<span class="number">1</span>];</div><div class="line">  FILE *obj_file = fopen(filename, <span class="string">"rb"</span>);</div><div class="line">  dump_segments(obj_file);</div><div class="line">  fclose(obj_file);</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">uint32_t</span> read_magic(FILE *obj_file, <span class="keyword">int</span> offset) &#123;</div><div class="line">  <span class="keyword">uint32_t</span> magic;</div><div class="line">  fseek(obj_file, offset, SEEK_SET);</div><div class="line">  fread(&amp;magic, <span class="keyword">sizeof</span>(<span class="keyword">uint32_t</span>), <span class="number">1</span>, obj_file);</div><div class="line">  <span class="keyword">return</span> magic;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dump_segments</span><span class="params">(FILE *obj_file)</span> </span>&#123;</div><div class="line">  <span class="keyword">uint32_t</span> magic = read_magic(obj_file, <span class="number">0</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在读取目标魔数之后读取CPU 架构等讯息，但是我们知道 CPU 是分32和64架构的，这时候我们就需要检查magic了</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_magic_64</span><span class="params">(<span class="keyword">uint32_t</span> magic)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> magic == MH_MAGIC_64 || magic == MH_CIGAM_64;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>由于历史原因，不同的计算机可能会使用不同的字节顺序,因此我们需要进行字节交换</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">should_swap_bytes</span><span class="params">(<span class="keyword">uint32_t</span> magic)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> magic == MH_CIGAM || magic == MH_CIGAM_64 || magic == FAT_CIGAM;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>接下来我们就可以进行 Header 的解析了<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_fat</span><span class="params">(<span class="keyword">uint32_t</span> magic)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> magic == FAT_MAGIC || magic == FAT_CIGAM;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">struct</span> _cpu_type_names &#123;</div><div class="line">    <span class="keyword">cpu_type_t</span> cputype;</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *cpu_name;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">struct</span> _cpu_subtype_names &#123;</div><div class="line">    <span class="keyword">cpu_type_t</span> cpusubtype;</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *cpu_sub_name;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">struct</span> _file_type_names &#123;</div><div class="line">    <span class="keyword">uint32_t</span> filetype;</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *file_type_name;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">static</span> <span class="keyword">struct</span> _cpu_type_names cpu_type_names[] = &#123;</div><div class="line">    </div><div class="line">    &#123; CPU_TYPE_I386, <span class="string">"i386"</span> &#125;,</div><div class="line">    &#123; CPU_TYPE_X86_64, <span class="string">"x86_64"</span> &#125;,</div><div class="line">    &#123; CPU_TYPE_ARM, <span class="string">"ARM"</span> &#125;,</div><div class="line">    &#123; CPU_TYPE_ARM64, <span class="string">"ARM64"</span> &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">static</span> <span class="keyword">struct</span> _cpu_subtype_names cpu_subtype_names[] = &#123;</div><div class="line">    </div><div class="line">    &#123; CPU_SUBTYPE_ARM_ALL, <span class="string">"ARM_ALL"</span> &#125;,</div><div class="line">    &#123; CPU_SUBTYPE_ARM_V7, <span class="string">"ARM_V7"</span> &#125;,</div><div class="line">    &#123; CPU_TYPE_ARM, <span class="string">"ARM64_ALL"</span> &#125;,</div><div class="line">    &#123; CPU_TYPE_ARM64, <span class="string">"ARM64_V8"</span> &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">static</span> <span class="keyword">struct</span> _file_type_names file_type_names[] = &#123;</div><div class="line">    </div><div class="line">    &#123; MH_OBJECT, <span class="string">"OBJECT"</span> &#125;,</div><div class="line">    &#123; MH_EXECUTE, <span class="string">"EXECUTE"</span> &#125;,</div><div class="line">    &#123; MH_FVMLIB, <span class="string">"FVMLIB"</span> &#125;,</div><div class="line">    &#123; MH_CORE, <span class="string">"CORE"</span> &#125;,</div><div class="line">    &#123; MH_PRELOAD, <span class="string">"PRELOAD"</span> &#125;,</div><div class="line">    &#123; MH_DYLIB, <span class="string">"DYLIB"</span> &#125;,</div><div class="line">    &#123; MH_DYLINKER, <span class="string">"DYLINKER"</span> &#125;,</div><div class="line">    &#123; MH_BUNDLE, <span class="string">"BUNDLE"</span> &#125;,</div><div class="line">    &#123; MH_DYLIB_STUB, <span class="string">"DYLIB_STUB"</span> &#125;,</div><div class="line">    &#123; MH_DSYM, <span class="string">"DSYM"</span> &#125;,</div><div class="line">    &#123; MH_KEXT_BUNDLE, <span class="string">"KEXT_BUNDLE"</span> &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">char</span> *<span class="title">cpu_type_name</span><span class="params">(<span class="keyword">cpu_type_t</span> cpu_type)</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> cpu_type_names_size = <span class="keyword">sizeof</span>(cpu_type_names) / <span class="keyword">sizeof</span>(<span class="keyword">struct</span> _cpu_type_names);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cpu_type_names_size; i++ ) &#123;</div><div class="line">        <span class="keyword">if</span> (cpu_type == cpu_type_names[i].cputype) &#123;</div><div class="line">            <span class="keyword">return</span> cpu_type_names[i].cpu_name;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="string">"unknown"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">char</span> *<span class="title">cpu_subtype_name</span><span class="params">(<span class="keyword">cpu_type_t</span> cpu_type)</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> cpu_subtype_names_size = <span class="keyword">sizeof</span>(cpu_subtype_names) / <span class="keyword">sizeof</span>(<span class="keyword">struct</span> _cpu_subtype_names);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cpu_subtype_names_size; i++ ) &#123;</div><div class="line">        <span class="keyword">if</span> (cpu_type == cpu_subtype_names[i].cpusubtype) &#123;</div><div class="line">            <span class="keyword">return</span> cpu_subtype_names[i].cpu_sub_name;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="string">"unknown"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">char</span> *<span class="title">file_type_name</span><span class="params">(<span class="keyword">uint32_t</span> file_type)</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> file_type_name_size = <span class="keyword">sizeof</span>(file_type_name) / <span class="keyword">sizeof</span>(<span class="keyword">struct</span> _file_type_names);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; file_type_name_size; i++ ) &#123;</div><div class="line">        <span class="keyword">if</span> (file_type == file_type_names[i].filetype) &#123;</div><div class="line">            <span class="keyword">return</span> file_type_names[i].file_type_name;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="string">"unknown"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> *<span class="title">load_bytes</span><span class="params">(FILE *obj_file, <span class="keyword">int</span> offset, <span class="keyword">int</span> size)</span> </span>&#123;</div><div class="line">    <span class="keyword">void</span> *buf = <span class="built_in">calloc</span>(<span class="number">1</span>, size);</div><div class="line">    fseek(obj_file, offset, SEEK_SET);</div><div class="line">    fread(buf, size, <span class="number">1</span>, obj_file);</div><div class="line">    <span class="keyword">return</span> buf;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dump_segment_commands</span><span class="params">(FILE *obj_file, <span class="keyword">int</span> offset, <span class="keyword">int</span> is_swap, <span class="keyword">uint32_t</span> ncmds)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> actual_offset = offset;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span>  i = <span class="number">0</span>; i &lt; ncmds; i++) &#123;</div><div class="line">        <span class="keyword">struct</span> load_command *cmd = load_bytes(obj_file, actual_offset, <span class="keyword">sizeof</span>(<span class="keyword">struct</span> load_command));</div><div class="line">        <span class="keyword">if</span> (is_swap) &#123;</div><div class="line">            swap_load_command(cmd, <span class="number">0</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (cmd-&gt;cmd == LC_SEGMENT_64) &#123;</div><div class="line">            <span class="keyword">struct</span> segment_command_64 *segment = load_bytes(obj_file, actual_offset, <span class="keyword">sizeof</span>(<span class="keyword">struct</span> segment_command_64));</div><div class="line">            <span class="keyword">if</span> (is_swap) &#123;</div><div class="line">                swap_segment_command_64(segment, <span class="number">0</span>);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="built_in">printf</span>(<span class="string">"segname: %s\n"</span>, segment-&gt;segname);</div><div class="line"></div><div class="line">            <span class="built_in">free</span>(segment);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (cmd-&gt;cmd == LC_SEGMENT) &#123;</div><div class="line">            <span class="keyword">struct</span> segment_command *segment = load_bytes(obj_file, actual_offset, <span class="keyword">sizeof</span>(<span class="keyword">struct</span> segment_command));</div><div class="line">            <span class="keyword">if</span> (is_swap) &#123;</div><div class="line">                swap_segment_command(segment, <span class="number">0</span>);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="built_in">printf</span>(<span class="string">"segname: %s\n"</span>, segment-&gt;segname);</div><div class="line"></div><div class="line">            <span class="built_in">free</span>(segment);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        actual_offset += cmd-&gt;cmdsize;</div><div class="line"></div><div class="line">        <span class="built_in">free</span>(cmd);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dump_mach_header</span><span class="params">(FILE *obj_file, <span class="keyword">int</span> offset, <span class="keyword">int</span> is_64, <span class="keyword">int</span> is_swap)</span> </span>&#123;</div><div class="line">    <span class="keyword">uint32_t</span> ncmds;</div><div class="line">    <span class="keyword">int</span> load_commands_offset = offset;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (is_64) &#123;</div><div class="line">        <span class="keyword">int</span> header_size = <span class="keyword">sizeof</span>(<span class="keyword">struct</span> mach_header_64);</div><div class="line">        <span class="keyword">struct</span> mach_header_64 *header = load_bytes(obj_file, offset, header_size);</div><div class="line">        <span class="keyword">if</span> (is_swap) &#123;</div><div class="line">            swap_mach_header_64(header, <span class="number">0</span>);</div><div class="line">        &#125;</div><div class="line">        ncmds = header-&gt;ncmds;</div><div class="line">        load_commands_offset += header_size;</div><div class="line"></div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, cpu_type_name(header-&gt;cputype));</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"mach_header64_filetype: %u\n"</span>, header-&gt;filetype);</div><div class="line"></div><div class="line">        <span class="built_in">free</span>(header);</div><div class="line"></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">int</span> header_size = <span class="keyword">sizeof</span>(<span class="keyword">struct</span> mach_header);</div><div class="line">        <span class="keyword">struct</span> mach_header *header = load_bytes(obj_file, offset, header_size);</div><div class="line">        <span class="keyword">if</span> (is_swap) &#123;</div><div class="line">            swap_mach_header(header, <span class="number">0</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        ncmds = header-&gt;ncmds;</div><div class="line">        load_commands_offset += header_size;</div><div class="line"></div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, cpu_type_name(header-&gt;cputype));</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"mach_header_filetype: %u\n"</span>, header-&gt;filetype);</div><div class="line">        </div><div class="line"></div><div class="line">        <span class="built_in">free</span>(header);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    dump_segment_commands(obj_file, load_commands_offset, is_swap, ncmds);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dump_fat_header</span><span class="params">(FILE *obj_file, <span class="keyword">int</span> is_swap)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> header_size = <span class="keyword">sizeof</span>(<span class="keyword">struct</span> fat_header);</div><div class="line">    <span class="keyword">int</span> arch_size = <span class="keyword">sizeof</span>(<span class="keyword">struct</span> fat_arch);</div><div class="line"></div><div class="line">    <span class="keyword">struct</span> fat_header *header = load_bytes(obj_file, <span class="number">0</span>, header_size);</div><div class="line">    <span class="keyword">if</span> (is_swap) &#123;</div><div class="line">        swap_fat_header(header, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> arch_offset = header_size;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; header-&gt;nfat_arch; i++) &#123;</div><div class="line">        <span class="keyword">struct</span> fat_arch *arch = load_bytes(obj_file, arch_offset, arch_size);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (is_swap) &#123;</div><div class="line">            swap_fat_arch(arch, <span class="number">1</span>, <span class="number">0</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> mach_header_offset = arch-&gt;offset;</div><div class="line">        <span class="built_in">free</span>(arch);</div><div class="line">        arch_offset += arch_size;</div><div class="line"></div><div class="line">        <span class="keyword">uint32_t</span> magic = read_magic(obj_file, mach_header_offset);</div><div class="line">        <span class="keyword">int</span> is_64 = is_magic_64(magic);</div><div class="line">        <span class="keyword">int</span> is_swap_mach = should_swap_bytes(magic);</div><div class="line">        dump_mach_header(obj_file, mach_header_offset, is_64, is_swap_mach);</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">free</span>(header);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dump_segments</span><span class="params">(FILE *obj_file)</span> </span>&#123;</div><div class="line">    <span class="keyword">uint32_t</span> magic = read_magic(obj_file, <span class="number">0</span>);</div><div class="line">    <span class="keyword">int</span> is_64 = is_magic_64(magic);</div><div class="line">    <span class="keyword">int</span> is_swap = should_swap_bytes(magic);</div><div class="line">    <span class="keyword">int</span> fat = is_fat(magic);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (!fat &amp;&amp; !is_64) &#123;</div><div class="line"></div><div class="line">        NSLog(@<span class="string">"%@"</span>, @<span class="string">"the file is not an object file."</span>);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (fat) &#123;</div><div class="line">        dump_fat_header(obj_file, is_swap);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        dump_mach_header(obj_file, <span class="number">0</span>, is_64, is_swap);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>代码中有一个 fat header解析，这个本文就不做解释，具体可以参考 Apple 官方文档进行。</p>
-<hr>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a><em>参考链接</em></h3><ul>
-<li><a href="https://link.jianshu.com/?t=http://opensource.apple.com/source/xnu/xnu-1456.1.26/EXTERNAL_HEADERS/mach-o/loader.h" target="_blank" rel="external">mach-o/loader.h</a></li>
-<li><a href="https://www.objc.io/issues/6-build-tools/mach-o-executables/" target="_blank" rel="external">Mach-O Executables</a></li>
-<li><a href="http://sourceforge.net/projects/machoview/" target="_blank" rel="external">MachOView</a></li>
-<li><a href="https://archive.is/20091227035309/http://channelu.com/NeXT/NeXTStep/3.3/nd/DevTools/14_MachO/MachO.htmld/index.html#selection-837.46-837.53" target="_blank" rel="external">Mach Object Files</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://blog.martinlau.org/2017/09/iOS助手开发1-基础/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MartinLau">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Martin's TechNet Blog">
-    </span>
-
     
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/iOS助手开发1-基础/" itemprop="url">iOS助手开发1-基础</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">發表於</span>
-              
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-09-19T14:35:08+08:00">
-                2017-09-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分類於</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mac-开发/" itemprop="url" rel="index">
-                    <span itemprop="name">Mac 开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
     
-
     <div class="post-body" itemprop="articleBody">
 
       
@@ -542,14 +457,17 @@
       
         
           <blockquote>
-<p><strong>Hi， 太久没有写文章了，准备勤快的更新了。文章以后将开始用简体中文开始写了， 可能有词还是繁体直译，看不懂莫怪，哈哈（跑题了） 言归正传</strong></p>
+<p>前言<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">本文将介绍如何解析 Mach-O Object 文件的部分 Header， 请</div><div class="line">注意这不是一个准备的指南，但希望可以给你一个帮助。</div><div class="line">更多可用的参考指南，请查阅和翻查Apple提供的文档。</div></pre></td></tr></table></figure></p>
 </blockquote>
-<hr>
-<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h4><p>如果你厌恶iTunes带来的繁琐，却想要通过macOS来连接你的iPhone， 并和iTunes一样管理你的手机，甚至简化一些步骤，你可能需要看看这篇文章了。想要和iTunes一样连接管理iPhone装置，我们需要了解到他的private api，这可能需要你懂得反组译，我这里并不准备说明怎么反组译，你可能需要自行google it。<br><strong>so sad : (</strong><br>
+<h2 id="什么是Mach-O-文件"><a href="#什么是Mach-O-文件" class="headerlink" title="什么是Mach-O 文件"></a><strong>什么是Mach-O 文件</strong></h2><p><strong>摘自<a href="https://zh.wikipedia.org/wiki/Mach-O">中文維基百科</a></strong></p>
+<blockquote>
+<p>Mach-O为Mach Object文件格式的缩写，它是一种用于可执行文件，目标代码，动态库，内核转储的文件格式。作为a.out格式的替代，Mach-O提供了更强的扩展性，并提升了符号表中信息的访问速度。</p>
+<p>Mach-O曾经为大部分基于Mach核心的操作系统所使用。NeXTSTEP，Darwin和Mac OS X等系统使用这种格式作为其原生可执行文件，库和目标代码的格式。而同样使用GNU Mach作为其微内核的GNU Hurd系统则使用ELF而非Mach-O作为其标准的二进制文件格式。</p>
+</blockquote>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/09/iOS助手开发1-基础/#more" rel="contents">
-              閱讀全文 &raquo;
+            <a class="btn" href="/2018/04/PARSING-MACH-O-FILES/#more" rel="contents">
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -557,17 +475,17 @@
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
+
+    
+
+    
 
     <footer class="post-footer">
       
@@ -581,6 +499,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -593,7 +515,13 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.martinlau.org/2017/09/iOS助手开发2-设备连接/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -613,23 +541,34 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/iOS助手开发2-设备连接/" itemprop="url">iOS助手开发2-设备连接</a></h2>
+                <a class="post-title-link" href="/2017/09/iOS助手开发2-设备连接/" itemprop="url">
+                  iOS助手开发2-设备连接
+                </a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">發表於</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-09-19T14:35:08+08:00">
-                2017-09-19
-              </time>
-            
 
+              
+                
+              
+
+              <time title="Post created: 2017-09-19 14:35:08" itemprop="dateCreated datePublished" datetime="2017-09-19T14:35:08+08:00">2017-09-19</time>
             
 
             
@@ -644,14 +583,10 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分類於</span>
+                <span class="post-meta-item-text">in</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mac-开发/" itemprop="url" rel="index">
-                    <span itemprop="name">Mac 开发</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mac-开发/" itemprop="url" rel="index"><span itemprop="name">Mac 开发</span></a></span>
 
                 
                 
@@ -676,6 +611,9 @@
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -689,7 +627,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/09/iOS助手开发2-设备连接/#more" rel="contents">
-              閱讀全文 &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -697,17 +635,17 @@
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
+
+    
+
+    
 
     <footer class="post-footer">
       
@@ -721,6 +659,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -733,7 +675,175 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.martinlau.org/2017/09/iOS助手开发1-基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MartinLau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Martin's TechNet Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/iOS助手开发1-基础/" itemprop="url">
+                  iOS助手开发1-基础
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2017-09-19 14:35:08" itemprop="dateCreated datePublished" datetime="2017-09-19T14:35:08+08:00">2017-09-19</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mac-开发/" itemprop="url" rel="index"><span itemprop="name">Mac 开发</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p><strong>Hi， 太久没有写文章了，准备勤快的更新了。文章以后将开始用简体中文开始写了， 可能有词还是繁体直译，看不懂莫怪，哈哈（跑题了） 言归正传</strong></p>
+</blockquote>
+<hr>
+<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h4><p>如果你厌恶iTunes带来的繁琐，却想要通过macOS来连接你的iPhone， 并和iTunes一样管理你的手机，甚至简化一些步骤，你可能需要看看这篇文章了。想要和iTunes一样连接管理iPhone装置，我们需要了解到他的private api，这可能需要你懂得反组译，我这里并不准备说明怎么反组译，你可能需要自行google it。<br><strong>so sad : (</strong><br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/iOS助手开发1-基础/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.martinlau.org/2016/06/importPKCS12/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -753,23 +863,34 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/06/importPKCS12/" itemprop="url">importPKCS12</a></h2>
+                <a class="post-title-link" href="/2016/06/importPKCS12/" itemprop="url">
+                  importPKCS12
+                </a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">發表於</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2016-06-06T03:03:00+08:00">
-                2016-06-06
-              </time>
-            
 
+              
+                
+              
+
+              <time title="Post created: 2016-06-06 03:03:00" itemprop="dateCreated datePublished" datetime="2016-06-06T03:03:00+08:00">2016-06-06</time>
             
 
             
@@ -784,14 +905,10 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分類於</span>
+                <span class="post-meta-item-text">in</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mac-开发/" itemprop="url" rel="index">
-                    <span itemprop="name">Mac 开发</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mac-开发/" itemprop="url" rel="index"><span itemprop="name">Mac 开发</span></a></span>
 
                 
                 
@@ -816,6 +933,9 @@
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -828,7 +948,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/06/importPKCS12/#more" rel="contents">
-              閱讀全文 &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -836,17 +956,17 @@
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
+
+    
+
+    
 
     <footer class="post-footer">
       
@@ -860,6 +980,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -872,7 +996,13 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.martinlau.org/2016/04/FirstArticle/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -892,23 +1022,34 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/04/FirstArticle/" itemprop="url">萬事開頭難，第一篇文章出生</a></h2>
+                <a class="post-title-link" href="/2016/04/FirstArticle/" itemprop="url">
+                  萬事開頭難，第一篇文章出生
+                </a>
+              
+            
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">發表於</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2016-04-02T03:03:00+08:00">
-                2016-04-02
-              </time>
-            
 
+              
+                
+              
+
+              <time title="Post created: 2016-04-02 03:03:00" itemprop="dateCreated datePublished" datetime="2016-04-02T03:03:00+08:00">2016-04-02</time>
             
 
             
@@ -923,14 +1064,10 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分類於</span>
+                <span class="post-meta-item-text">in</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/隨手記/" itemprop="url" rel="index">
-                    <span itemprop="name">隨手記</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/隨手記/" itemprop="url" rel="index"><span itemprop="name">隨手記</span></a></span>
 
                 
                 
@@ -955,6 +1092,9 @@
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -966,7 +1106,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/04/FirstArticle/#more" rel="contents">
-              閱讀全文 &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -974,17 +1114,17 @@
       
     </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
-    </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
+
+    
+
+    
 
     <footer class="post-footer">
       
@@ -998,6 +1138,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1008,9 +1152,6 @@
 
 
           </div>
-          
-
-
           
 
         </div>
@@ -1026,136 +1167,159 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.png"
-               alt="MartinLau" />
-          <p class="site-author-name" itemprop="name">MartinLau</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-           
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="MartinLau" />
+            
+              <p class="site-author-name" itemprop="name">MartinLau</p>
+              <p class="site-description motion-element" itemprop="description">MartinLau 的技術網誌</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">Tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/martinlau7" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/206253536" target="_blank" title="Weibo" rel="external nofollow"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:yourname@gmail.com" target="_blank" title="電子信箱" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>電子信箱</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/117112373752244855090" target="_blank" title="Google" rel="external nofollow"><i class="fa fa-fw fa-google"></i>Google</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/Martin_Lau_" target="_blank" title="Twitter" rel="external nofollow"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.bombox.org" title="bomo的开发随笔" target="_blank">bomo的开发随笔</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hexo.io/zh-tw/" title="Hexo" target="_blank">Hexo</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
         </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">5</span>
-                <span class="site-state-item-name">文章</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">分類</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">標籤</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/martinlau7" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/206253536" target="_blank" title="微博">
-                  
-                    <i class="fa fa-fw fa-weibo"></i>
-                  
-                  微博
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:martinlau@livemail.tw" target="_blank" title="電子信箱">
-                  
-                    <i class="fa fa-fw fa-envelope-o"></i>
-                  
-                  電子信箱
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-          <div class="cc-license motion-element" itemprop="license">
-            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
-            </a>
-          </div>
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://hexo.io/zh-tw/" title="Hexo" target="_blank">Hexo</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://blog.bombox.org" title="bomo的开发随笔" target="_blank">bomo的开发随笔</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        
-
-
       </section>
 
       
 
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
       
 
     </div>
@@ -1168,40 +1332,68 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">MartinLau</span>
+
+  
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力支援
-</div>
+  
 
-<div class="theme-info">
-  主題 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a></div>
+
+
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
+
     
 
   </div>
@@ -1222,7 +1414,6 @@
 
 
 
-  
 
 
 
@@ -1235,58 +1426,63 @@
 
 
 
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
-
-
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
 
 
 
   
 
 
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
 
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
+
+
+
+  
 
 
 
@@ -1308,14 +1504,6 @@
 
 
 
-  
-
-
-
-
-
-
-  
 
 
 
@@ -1323,33 +1511,394 @@
 
   
 
-  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
 
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
         }
       });
-    </script>
+    }
 
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
   
 
 
   
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.2.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.2.0"></script>
+
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script type="text/javascript">
+  
+    bookmark.loadBookmark();
+  
+  </script>
+
 
   
 
